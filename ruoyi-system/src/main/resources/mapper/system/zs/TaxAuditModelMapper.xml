@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.zs.TaxAuditModelMapper">
+
+	<resultMap id="BaseResultMap" type="com.ruoyi.system.domain.zs.TaxAuditModel">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="year" jdbcType="INTEGER" property="year" />
+		<result column="report_serial" jdbcType="INTEGER" property="reportSerial" />
+		<result column="state" jdbcType="INTEGER" property="state" />
+		<result column="report_path" jdbcType="VARCHAR" property="reportPath" />
+		<result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="organization_id" jdbcType="INTEGER" property="organizationId" />
+		<result column="organization_name" jdbcType="VARCHAR" property="organizationName" />
+		<result column="serial_date" jdbcType="TIMESTAMP" property="serialDate" />
+		<result column="tax_type" jdbcType="VARCHAR" property="taxType" />
+		<result column="profit_before_adjustment" jdbcType="DOUBLE" property="profitBeforeAdjustment" />
+		<result column="income" jdbcType="DOUBLE" property="income" />
+		<result column="profit_after_adjustment" jdbcType="DOUBLE" property="profitAfterAdjustment" />
+		<result column="tax_increase_or_book_RD_expenses" jdbcType="DOUBLE" property="taxIncreaseOrBookRDExpenses" />
+		<result column="tax_deduction_or_approved_deduction" jdbcType="DOUBLE" property="taxDeductionOrApprovedDeduction" />
+		<result column="contact" jdbcType="VARCHAR" property="contact" />
+		<result column="tel" jdbcType="VARCHAR" property="tel" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="industry" jdbcType="VARCHAR" property="industry" />
+		<result column="unified_social_credit_code" jdbcType="VARCHAR" property="unifiedSocialCreditCode" />
+		<result column="audit_year" jdbcType="INTEGER" property="auditYear" />
+		<result column="report_date" jdbcType="TIMESTAMP" property="reportDate" />
+		<result column="remarks" jdbcType="VARCHAR" property="remarks" />
+		<result column="first_audit_person_id" jdbcType="INTEGER" property="firstAuditPersonId" />
+		<result column="first_audit_person_name" jdbcType="VARCHAR" property="firstAuditPersonName" />
+		<result column="first_audit_opinion" jdbcType="VARCHAR" property="firstAuditOpinion" />
+		<result column="first_audit_date" jdbcType="TIMESTAMP" property="firstAuditDate" />
+		<result column="second_audit_person_id" jdbcType="INTEGER" property="secondAuditPersonId" />
+		<result column="second_audit_person_name" jdbcType="VARCHAR" property="secondAuditPersonName" />
+		<result column="second_audit_opinion" jdbcType="VARCHAR" property="secondAuditOpinion" />
+		<result column="second_audit_date" jdbcType="TIMESTAMP" property="secondAuditDate" />
+		<result column="third_audti_person_id" jdbcType="INTEGER" property="thirdAudtiPersonId" />
+		<result column="third_audit_person_name" jdbcType="VARCHAR" property="thirdAuditPersonName" />
+		<result column="third_audit_opinion" jdbcType="VARCHAR" property="thirdAuditOpinion" />
+		<result column="third_audit_date" jdbcType="TIMESTAMP" property="thirdAuditDate" />
+		<result column="payment_method" jdbcType="VARCHAR" property="paymentMethod" />
+		<result column="amount_received" jdbcType="DOUBLE" property="amountReceived" />
+		<result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+
+	<sql id="Base_Column_List" >
+		id,
+		year,
+		report_serial,
+		state,
+		report_path,
+		customer_name,
+		user_id,
+		user_name,
+		organization_id,
+		organization_name,
+		serial_date,
+		tax_type,
+		profit_before_adjustment,
+		income,
+		profit_after_adjustment,
+		tax_increase_or_book_RD_expenses,
+		tax_deduction_or_approved_deduction,
+		contact,
+		tel,
+		address,
+		industry,
+		unified_social_credit_code,
+		audit_year,
+		report_date,
+		remarks,
+		first_audit_person_id,
+		first_audit_person_name,
+		first_audit_opinion,
+		first_audit_date,
+		second_audit_person_id,
+		second_audit_person_name,
+		second_audit_opinion,
+		second_audit_date,
+		third_audti_person_id,
+		third_audit_person_name,
+		third_audit_opinion,
+		third_audit_date,
+		payment_method,
+		amount_received,
+		is_deleted,
+		create_time,
+		update_time
+	</sql>
+
+	<insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true" >
+		insert into tax_audit (
+			id,
+			year,
+			report_serial,
+			state,
+			report_path,
+			customer_name,
+			user_id,
+			user_name,
+			organization_id,
+			organization_name,
+			serial_date,
+			tax_type,
+			profit_before_adjustment,
+			income,
+			profit_after_adjustment,
+			tax_increase_or_book_RD_expenses,
+			tax_deduction_or_approved_deduction,
+			contact,
+			tel,
+			address,
+			industry,
+			unified_social_credit_code,
+			audit_year,
+			report_date,
+			remarks,
+			first_audit_person_id,
+			first_audit_person_name,
+			first_audit_opinion,
+			first_audit_date,
+			second_audit_person_id,
+			second_audit_person_name,
+			second_audit_opinion,
+			second_audit_date,
+			third_audti_person_id,
+			third_audit_person_name,
+			third_audit_opinion,
+			third_audit_date,
+			payment_method,
+			amount_received,
+			is_deleted,
+			create_time,
+			update_time
+		)
+ 	    values (
+			#{id},
+			#{year},
+			#{reportSerial},
+			#{state},
+			#{reportPath},
+			#{customerName},
+			#{userId},
+			#{userName},
+			#{organizationId},
+			#{organizationName},
+			#{serialDate},
+			#{taxType},
+			#{profitBeforeAdjustment},
+			#{income},
+			#{profitAfterAdjustment},
+			#{taxIncreaseOrBookRDExpenses},
+			#{taxDeductionOrApprovedDeduction},
+			#{contact},
+			#{tel},
+			#{address},
+			#{industry},
+			#{unifiedSocialCreditCode},
+			#{auditYear},
+			#{reportDate},
+			#{remarks},
+			#{firstAuditPersonId},
+			#{firstAuditPersonName},
+			#{firstAuditOpinion},
+			#{firstAuditDate},
+			#{secondAuditPersonId},
+			#{secondAuditPersonName},
+			#{secondAuditOpinion},
+			#{secondAuditDate},
+			#{thirdAudtiPersonId},
+			#{thirdAuditPersonName},
+			#{thirdAuditOpinion},
+			#{thirdAuditDate},
+			#{paymentMethod},
+			#{amountReceived},
+			#{isDeleted},
+			NOW(),
+			NULL
+		)
+	</insert>
+
+	<delete id="deleteById" >
+		delete from tax_audit
+		where id = #{id}
+	</delete>
+
+	<delete id="deleteByIds" >
+		delete from tax_audit
+		where id in
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+
+	<update id="updateById" >
+		update tax_audit
+		<set>
+			<if test="year != null">year = #{year}, </if>
+			<if test="reportSerial != null">report_serial = #{reportSerial}, </if>
+			<if test="state != null">state = #{state}, </if>
+			<if test="reportPath != null and reportPath != ''">report_path = #{reportPath}, </if>
+			<if test="customerName != null and customerName != ''">customer_name = #{customerName}, </if>
+			<if test="userId != null">user_id = #{userId}, </if>
+			<if test="userName != null and userName != ''">user_name = #{userName}, </if>
+			<if test="organizationId != null">organization_id = #{organizationId}, </if>
+			<if test="organizationName != null and organizationName != ''">organization_name = #{organizationName}, </if>
+			<if test="serialDate != null">serial_date = #{serialDate}, </if>
+			<if test="taxType != null and taxType != ''">tax_type = #{taxType}, </if>
+			<if test="profitBeforeAdjustment != null">profit_before_adjustment = #{profitBeforeAdjustment}, </if>
+			<if test="income != null">income = #{income}, </if>
+			<if test="profitAfterAdjustment != null">profit_after_adjustment = #{profitAfterAdjustment}, </if>
+			<if test="taxIncreaseOrBookRDExpenses != null">tax_increase_or_book_RD_expenses = #{taxIncreaseOrBookRDExpenses}, </if>
+			<if test="taxDeductionOrApprovedDeduction != null">tax_deduction_or_approved_deduction = #{taxDeductionOrApprovedDeduction}, </if>
+			<if test="contact != null and contact != ''">contact = #{contact}, </if>
+			<if test="tel != null and tel != ''">tel = #{tel}, </if>
+			<if test="address != null and address != ''">address = #{address}, </if>
+			<if test="industry != null and industry != ''">industry = #{industry}, </if>
+			<if test="unifiedSocialCreditCode != null and unifiedSocialCreditCode != ''">unified_social_credit_code = #{unifiedSocialCreditCode}, </if>
+			<if test="auditYear != null">audit_year = #{auditYear}, </if>
+			<if test="reportDate != null">report_date = #{reportDate}, </if>
+			<if test="remarks != null and remarks != ''">remarks = #{remarks}, </if>
+			<if test="firstAuditPersonId != null">first_audit_person_id = #{firstAuditPersonId}, </if>
+			<if test="firstAuditPersonName != null and firstAuditPersonName != ''">first_audit_person_name = #{firstAuditPersonName}, </if>
+			<if test="firstAuditOpinion != null and firstAuditOpinion != ''">first_audit_opinion = #{firstAuditOpinion}, </if>
+			<if test="firstAuditDate != null">first_audit_date = #{firstAuditDate}, </if>
+			<if test="secondAuditPersonId != null">second_audit_person_id = #{secondAuditPersonId}, </if>
+			<if test="secondAuditPersonName != null and secondAuditPersonName != ''">second_audit_person_name = #{secondAuditPersonName}, </if>
+			<if test="secondAuditOpinion != null and secondAuditOpinion != ''">second_audit_opinion = #{secondAuditOpinion}, </if>
+			<if test="secondAuditDate != null">second_audit_date = #{secondAuditDate}, </if>
+			<if test="thirdAudtiPersonId != null">third_audti_person_id = #{thirdAudtiPersonId}, </if>
+			<if test="thirdAuditPersonName != null and thirdAuditPersonName != ''">third_audit_person_name = #{thirdAuditPersonName}, </if>
+			<if test="thirdAuditOpinion != null and thirdAuditOpinion != ''">third_audit_opinion = #{thirdAuditOpinion}, </if>
+			<if test="thirdAuditDate != null">third_audit_date = #{thirdAuditDate}, </if>
+			<if test="paymentMethod != null and paymentMethod != ''">payment_method = #{paymentMethod}, </if>
+			<if test="amountReceived != null">amount_received = #{amountReceived}, </if>
+			<if test="isDeleted != null">is_deleted = #{isDeleted}, </if>
+		update_time = NOW()
+		</set>
+		where id = #{id}
+	</update>
+
+	<select id="findById" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from tax_audit
+		where id = #{id}
+	</select>
+
+	<select id="findALL" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from tax_audit
+	</select>
+
+	<select id="selectByCondition" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from tax_audit
+		<where>
+		<if test="id != null "> and id = #{id}</if>
+		<if test="year != null "> and year = #{year}</if>
+		<if test="reportSerial != null "> and report_serial = #{reportSerial}</if>
+		<if test="state != null "> and state = #{state}</if>
+		<if test="reportPath != null and reportPath!=''"> and report_path = #{reportPath}</if>
+		<if test="customerName != null and customerName!=''"> and customer_name = #{customerName}</if>
+		<if test="userId != null "> and user_id = #{userId}</if>
+		<if test="userName != null and userName!=''"> and user_name = #{userName}</if>
+		<if test="organizationId != null "> and organization_id = #{organizationId}</if>
+		<if test="organizationName != null and organizationName!=''"> and organization_name = #{organizationName}</if>
+		<if test="serialDate != null "> and serial_date = #{serialDate}</if>
+		<if test="taxType != null and taxType!=''"> and tax_type = #{taxType}</if>
+		<if test="profitBeforeAdjustment != null "> and profit_before_adjustment = #{profitBeforeAdjustment}</if>
+		<if test="income != null "> and income = #{income}</if>
+		<if test="profitAfterAdjustment != null "> and profit_after_adjustment = #{profitAfterAdjustment}</if>
+		<if test="taxIncreaseOrBookRDExpenses != null "> and tax_increase_or_book_RD_expenses = #{taxIncreaseOrBookRDExpenses}</if>
+		<if test="taxDeductionOrApprovedDeduction != null "> and tax_deduction_or_approved_deduction = #{taxDeductionOrApprovedDeduction}</if>
+		<if test="contact != null and contact!=''"> and contact = #{contact}</if>
+		<if test="tel != null and tel!=''"> and tel = #{tel}</if>
+		<if test="address != null and address!=''"> and address = #{address}</if>
+		<if test="industry != null and industry!=''"> and industry = #{industry}</if>
+		<if test="unifiedSocialCreditCode != null and unifiedSocialCreditCode!=''"> and unified_social_credit_code = #{unifiedSocialCreditCode}</if>
+		<if test="auditYear != null "> and audit_year = #{auditYear}</if>
+		<if test="reportDate != null "> and report_date = #{reportDate}</if>
+		<if test="remarks != null and remarks!=''"> and remarks = #{remarks}</if>
+		<if test="firstAuditPersonId != null "> and first_audit_person_id = #{firstAuditPersonId}</if>
+		<if test="firstAuditPersonName != null and firstAuditPersonName!=''"> and first_audit_person_name = #{firstAuditPersonName}</if>
+		<if test="firstAuditOpinion != null and firstAuditOpinion!=''"> and first_audit_opinion = #{firstAuditOpinion}</if>
+		<if test="firstAuditDate != null "> and first_audit_date = #{firstAuditDate}</if>
+		<if test="secondAuditPersonId != null "> and second_audit_person_id = #{secondAuditPersonId}</if>
+		<if test="secondAuditPersonName != null and secondAuditPersonName!=''"> and second_audit_person_name = #{secondAuditPersonName}</if>
+		<if test="secondAuditOpinion != null and secondAuditOpinion!=''"> and second_audit_opinion = #{secondAuditOpinion}</if>
+		<if test="secondAuditDate != null "> and second_audit_date = #{secondAuditDate}</if>
+		<if test="thirdAudtiPersonId != null "> and third_audti_person_id = #{thirdAudtiPersonId}</if>
+		<if test="thirdAuditPersonName != null and thirdAuditPersonName!=''"> and third_audit_person_name = #{thirdAuditPersonName}</if>
+		<if test="thirdAuditOpinion != null and thirdAuditOpinion!=''"> and third_audit_opinion = #{thirdAuditOpinion}</if>
+		<if test="thirdAuditDate != null "> and third_audit_date = #{thirdAuditDate}</if>
+		<if test="paymentMethod != null and paymentMethod!=''"> and payment_method = #{paymentMethod}</if>
+		<if test="amountReceived != null "> and amount_received = #{amountReceived}</if>
+		<if test="isDeleted != null "> and is_deleted = #{isDeleted}</if>
+		</where>
+	</select>
+
+</mapper>
