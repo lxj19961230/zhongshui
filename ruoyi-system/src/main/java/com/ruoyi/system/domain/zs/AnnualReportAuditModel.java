@@ -1,4 +1,5 @@
 package com.ruoyi.system.domain.zs;
+import com.ruoyi.common.core.domain.BaseEntity;
 import lombok.*;
 import java.time.LocalDateTime;
 
@@ -7,8 +8,10 @@ import java.time.LocalDateTime;
  *annual_report_audit bean
  */
 @Data
-public class AnnualReportAuditModel  extends IdModel  {
+public class AnnualReportAuditModel  extends BaseEntity {
 
+
+	private Integer id;
 
 	/**
 	 * 年份

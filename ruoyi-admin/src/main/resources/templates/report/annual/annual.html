@@ -11,10 +11,10 @@
 					<div class="select-list">
 						<ul>
 							<li>
-								部门名称：<input type="text" name="deptName"/>
+								关键字：<input type="text" name="searchValue"/>
 							</li>
 							<li>
-								部门状态：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+								审核筛选：<select name="status" th:with="type=${@dict.getType('report_status')}">
 									<option value="">所有</option>
 									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
 								</select>
@@ -27,18 +27,16 @@
 					</div>
 				</form>
 			</div>
-                
-            <div class="btn-group-sm" id="toolbar" role="group">
-		        <a class="btn btn-success" onclick="$.operate.add(100)" shiro:hasPermission="system:dept:add">
-                    <i class="fa fa-plus"></i> 新增
-                </a>
-                <a class="btn btn-primary" onclick="$.operate.edit()" shiro:hasPermission="system:dept:edit">
-		            <i class="fa fa-edit"></i> 修改
-		        </a>
-                <a class="btn btn-info" id="expandAllBtn">
-                    <i class="fa fa-exchange"></i> 展开/折叠
-                </a>
-	        </div>
+
+			<div class="btn-group-sm" id="toolbar" role="group">
+				<a class="btn btn-success" onclick="$.operate.addTab()" shiro:hasPermission="report:annual:add">
+					<i class="fa fa-plus"></i> 新增
+				</a>
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="report:annual:export">
+					<i class="fa fa-download"></i> 导出
+				</a>
+			</div>
+
        		 <div class="col-sm-12 select-table table-striped">
 	            <table id="bootstrap-tree-table"></table>
 	        </div>
@@ -46,36 +44,90 @@
 	</div>
 	<th:block th:include="include :: footer" />
 	<script th:inline="javascript">
-		var addFlag = [[${@permission.hasPermi('system:dept:add')}]];
-		var editFlag = [[${@permission.hasPermi('system:dept:edit')}]];
-		var removeFlag = [[${@permission.hasPermi('system:dept:remove')}]];
-		var datas = [[${@dict.getType('sys_normal_disable')}]];
-		var prefix = ctx + "system/dept"
+		var addFlag = [[${@permission.hasPermi('report:annual:add')}]];
+		var editFlag = [[${@permission.hasPermi('report:annual:edit')}]];
+		var removeFlag = [[${@permission.hasPermi('report:annual:remove')}]];
+		var datas = [[${@dict.getType('report_status')}]];
+		var prefix = ctx + "report/annual"
 
 		$(function() {
 		    var options = {
-		        code: "deptId",
-		        parentCode: "parentId",
-		        uniqueId: "deptId",
+		        code: "id",
+		        uniqueId: "id",
 		        url: prefix + "/list",
 		        createUrl: prefix + "/add/{id}",
 		        updateUrl: prefix + "/edit/{id}",
 		        removeUrl: prefix + "/remove/{id}",
-		        modalName: "部门",
+		        modalName: "年报",
 		        columns: [{
-                    field: 'selectItem', 
+                    field: 'selectItem',
                     radio: true
                  },
+				{
+					field: 'Integer',
+					title: '年份',
+					align: "left"
+				},
                  {
-		            field: 'deptName',
-		            title: '部门名称',
+		            field: 'reportSerial',
+		            title: '文号',
 		            align: "left"
 		        },
 		        {
-		            field: 'orderNum',
-		            title: '排序',
+		            field: 'customerName',
+		            title: '业务单位',
 		            align: "left"
 		        },
+				{
+					field: 'userName',
+					title: '业务员',
+					align: "left"
+				},
+				{
+					field: 'reportPath',
+					title: '业务存储路径',
+					align: "left"
+				},
+				{
+					field: 'organizationName',
+					title: '部门',
+					align: "left"
+				},
+				{
+					field: 'serialDate',
+					title: '取号日期',
+					align: "left"
+				},
+				{
+					field: 'contact',
+					title: '联系人姓名',
+					align: "left"
+				},
+				{
+					field: 'tel',
+					title: '联系人电话',
+					align: "left"
+				},
+				{
+					field: 'industry',
+					title: '行业',
+					align: "left"
+				},
+				{
+					field: 'firstAuditPersonName',
+					title: '一审',
+					align: "left"
+				},
+				{
+					field: 'secondAuditPersonName',
+					title: '二审',
+					align: "left"
+				},
+				{
+					field: 'thirdAuditPersonName',
+					title: '三审',
+					align: "left"
+				},
 		        {
 		            field: 'status',
 		            title: '状态',

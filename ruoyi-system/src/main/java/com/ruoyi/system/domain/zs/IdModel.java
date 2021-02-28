@@ -4,6 +4,7 @@ import com.ruoyi.system.mapper.zs.GenericModel;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 /**
  * @desc:
@@ -21,6 +22,11 @@ public class IdModel extends GenericModel<Integer> {
 
     //主键id
     private LocalDateTime createTime;
+
+    //搜索关键字
+    private String searchKey;
+
+    private Map<String, Object> params;
 
     public Integer getId() {
         return id;

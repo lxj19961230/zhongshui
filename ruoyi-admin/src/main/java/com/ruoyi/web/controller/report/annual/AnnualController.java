@@ -1,6 +1,7 @@
 package com.ruoyi.web.controller.report.annual;
 
 import com.ruoyi.common.core.controller.BaseController;
+import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.system.domain.zs.AnnualReportAuditModel;
 import com.ruoyi.system.service.zs.AnnualService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -17,8 +18,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/report/annual")
-public class AnnualController extends BaseController
-{
+public class AnnualController extends BaseController {
     private String prefix = "report/annual";
 
     @Autowired
@@ -34,9 +34,10 @@ public class AnnualController extends BaseController
     @RequiresPermissions("report:annual:list")
     @PostMapping("/list")
     @ResponseBody
-    public List<AnnualReportAuditModel> list(AnnualReportAuditModel annualReportAuditModel)
-    {
+    public TableDataInfo list(AnnualReportAuditModel annualReportAuditModel) {
+        startPage();
         List<AnnualReportAuditModel> list = annualService.selectDeptList(annualReportAuditModel);
-        return list;
+        return getDataTable(list);
     }
+
 }
