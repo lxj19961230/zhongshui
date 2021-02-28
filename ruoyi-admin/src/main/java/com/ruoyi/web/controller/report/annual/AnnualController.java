@@ -40,4 +40,11 @@ public class AnnualController extends BaseController {
         return getDataTable(list);
     }
 
+    @GetMapping("/add")
+    public String add()
+    {
+        return prefix + "/add";
+    }
+
+
 }
