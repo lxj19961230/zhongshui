@@ -37,8 +37,7 @@ public class AnnualController extends BaseController {
     public TableDataInfo list(AnnualReportAuditModel annualReportAuditModel) {
         startPage();
         List<AnnualReportAuditModel> list = annualService.selectDeptList(annualReportAuditModel);
-        TableDataInfo tableDataInfo = getDataTable(list);
-        return tableDataInfo;
+        return getDataTable(list);
     }
 
     @GetMapping("/add")

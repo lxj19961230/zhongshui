@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 /**
  *special_audit bean
  */
-@Data
 public class SpecialAuditModel  extends IdModel  {
 
 
@@ -162,4 +161,309 @@ public class SpecialAuditModel  extends IdModel  {
 	 * 逻辑删除 0存在；1删除；
 	 */
 	private Integer isDeleted;
+
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getReportSerial() {
+		return reportSerial;
+	}
+
+	public void setReportSerial(Integer reportSerial) {
+		this.reportSerial = reportSerial;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	public String getReportPath() {
+		return reportPath;
+	}
+
+	public void setReportPath(String reportPath) {
+		this.reportPath = reportPath;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public Integer getOrganizationId() {
+		return organizationId;
+	}
+
+	public void setOrganizationId(Integer organizationId) {
+		this.organizationId = organizationId;
+	}
+
+	public String getOrganizationName() {
+		return organizationName;
+	}
+
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
+	}
+
+	public LocalDateTime getSerialDate() {
+		return serialDate;
+	}
+
+	public void setSerialDate(LocalDateTime serialDate) {
+		this.serialDate = serialDate;
+	}
+
+	public String getAuditProjectName() {
+		return auditProjectName;
+	}
+
+	public void setAuditProjectName(String auditProjectName) {
+		this.auditProjectName = auditProjectName;
+	}
+
+	public String getMainIndicators() {
+		return mainIndicators;
+	}
+
+	public void setMainIndicators(String mainIndicators) {
+		this.mainIndicators = mainIndicators;
+	}
+
+	public LocalDateTime getAuditStartYear() {
+		return auditStartYear;
+	}
+
+	public void setAuditStartYear(LocalDateTime auditStartYear) {
+		this.auditStartYear = auditStartYear;
+	}
+
+	public LocalDateTime getAuditEndYear() {
+		return auditEndYear;
+	}
+
+	public void setAuditEndYear(LocalDateTime auditEndYear) {
+		this.auditEndYear = auditEndYear;
+	}
+
+	public Integer getAuditYear() {
+		return auditYear;
+	}
+
+	public void setAuditYear(Integer auditYear) {
+		this.auditYear = auditYear;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+
+	public String getUnifiedSocialCreditCode() {
+		return unifiedSocialCreditCode;
+	}
+
+	public void setUnifiedSocialCreditCode(String unifiedSocialCreditCode) {
+		this.unifiedSocialCreditCode = unifiedSocialCreditCode;
+	}
+
+	public String getCompanyType() {
+		return companyType;
+	}
+
+	public void setCompanyType(String companyType) {
+		this.companyType = companyType;
+	}
+
+	public LocalDateTime getReportDate() {
+		return reportDate;
+	}
+
+	public void setReportDate(LocalDateTime reportDate) {
+		this.reportDate = reportDate;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	public Integer getFirstAuditPersonId() {
+		return firstAuditPersonId;
+	}
+
+	public void setFirstAuditPersonId(Integer firstAuditPersonId) {
+		this.firstAuditPersonId = firstAuditPersonId;
+	}
+
+	public String getFirstAuditPersonName() {
+		return firstAuditPersonName;
+	}
+
+	public void setFirstAuditPersonName(String firstAuditPersonName) {
+		this.firstAuditPersonName = firstAuditPersonName;
+	}
+
+	public String getFirstAuditOpinion() {
+		return firstAuditOpinion;
+	}
+
+	public void setFirstAuditOpinion(String firstAuditOpinion) {
+		this.firstAuditOpinion = firstAuditOpinion;
+	}
+
+	public LocalDateTime getFirstAuditDate() {
+		return firstAuditDate;
+	}
+
+	public void setFirstAuditDate(LocalDateTime firstAuditDate) {
+		this.firstAuditDate = firstAuditDate;
+	}
+
+	public Integer getSecondAuditPersonId() {
+		return secondAuditPersonId;
+	}
+
+	public void setSecondAuditPersonId(Integer secondAuditPersonId) {
+		this.secondAuditPersonId = secondAuditPersonId;
+	}
+
+	public String getSecondAuditPersonName() {
+		return secondAuditPersonName;
+	}
+
+	public void setSecondAuditPersonName(String secondAuditPersonName) {
+		this.secondAuditPersonName = secondAuditPersonName;
+	}
+
+	public String getSecondAuditOpinion() {
+		return secondAuditOpinion;
+	}
+
+	public void setSecondAuditOpinion(String secondAuditOpinion) {
+		this.secondAuditOpinion = secondAuditOpinion;
+	}
+
+	public LocalDateTime getSecondAuditDate() {
+		return secondAuditDate;
+	}
+
+	public void setSecondAuditDate(LocalDateTime secondAuditDate) {
+		this.secondAuditDate = secondAuditDate;
+	}
+
+	public Integer getThirdAudtiPersonId() {
+		return thirdAudtiPersonId;
+	}
+
+	public void setThirdAudtiPersonId(Integer thirdAudtiPersonId) {
+		this.thirdAudtiPersonId = thirdAudtiPersonId;
+	}
+
+	public String getThirdAuditPersonName() {
+		return thirdAuditPersonName;
+	}
+
+	public void setThirdAuditPersonName(String thirdAuditPersonName) {
+		this.thirdAuditPersonName = thirdAuditPersonName;
+	}
+
+	public String getThirdAuditOpinion() {
+		return thirdAuditOpinion;
+	}
+
+	public void setThirdAuditOpinion(String thirdAuditOpinion) {
+		this.thirdAuditOpinion = thirdAuditOpinion;
+	}
+
+	public LocalDateTime getThirdAuditDate() {
+		return thirdAuditDate;
+	}
+
+	public void setThirdAuditDate(LocalDateTime thirdAuditDate) {
+		this.thirdAuditDate = thirdAuditDate;
+	}
+
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+	public Double getAmountReceived() {
+		return amountReceived;
+	}
+
+	public void setAmountReceived(Double amountReceived) {
+		this.amountReceived = amountReceived;
+	}
+
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 }
