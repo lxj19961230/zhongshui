@@ -1,6 +1,6 @@
 package com.ruoyi.system.domain.zs;
 
-import com.ruoyi.system.mapper.zs.GenericModel;
+import com.ruoyi.system.domain.zs.other.GenericModel;
 import lombok.Data;
 
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package com.ruoyi.system.mapper.zs;
+package com.ruoyi.system.domain.zs.other;
 
 import com.ruoyi.system.domain.zs.IdModel;
 import org.apache.ibatis.annotations.Param;

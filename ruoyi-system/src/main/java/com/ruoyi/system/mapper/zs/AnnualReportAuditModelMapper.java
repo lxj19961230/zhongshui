@@ -1,6 +1,5 @@
 package com.ruoyi.system.mapper.zs;
 import com.ruoyi.system.domain.zs.AnnualReportAuditModel;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.List;
 /**
  *annual_report_audit dao
  */
-@Mapper
 public interface AnnualReportAuditModelMapper {
 
     AnnualReportAuditModel findById(Integer id);

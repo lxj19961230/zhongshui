@@ -1,12 +1,11 @@
 package com.ruoyi.system.mapper.zs;
 import com.ruoyi.system.domain.zs.SpecialAuditModel;
-import org.apache.ibatis.annotations.Mapper;
+import com.ruoyi.system.domain.zs.other.ExtGenericMapper;
 
 
 /**
  *special_audit dao
  */
-@Mapper
 public interface SpecialAuditModelMapper  extends ExtGenericMapper<SpecialAuditModel, Integer> {
 
 

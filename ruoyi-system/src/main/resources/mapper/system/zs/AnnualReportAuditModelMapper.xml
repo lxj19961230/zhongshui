@@ -320,7 +320,7 @@
 		</where>
 	</select>
 
-	<select id="selectActiveList" resultType="com.ruoyi.system.domain.zs.AnnualReportAuditModel">
+	<select id="selectActiveList" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from annual_report_audit

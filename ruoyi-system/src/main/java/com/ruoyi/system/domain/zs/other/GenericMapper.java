@@ -1,4 +1,4 @@
-package com.ruoyi.system.mapper.zs;
+package com.ruoyi.system.domain.zs.other;
 
 /**
  * @desc:
