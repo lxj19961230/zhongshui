@@ -1,6 +1,9 @@
 package com.ruoyi.system.domain.zs;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruoyi.common.core.domain.BaseEntity;
+
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 /**
@@ -50,7 +53,8 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 取号日期
 	 */
-	private LocalDateTime serialDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date serialDate;
 	/**
 	 * 资产
 	 */
@@ -114,7 +118,8 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 报告日期
 	 */
-	private LocalDateTime reportDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date reportDate;
 	/**
 	 * 备注
 	 */
@@ -122,7 +127,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 一审人员ID
 	 */
-	private Integer firstAuditPersonId;
+	private Long firstAuditPersonId;
 	/**
 	 * 一审人员姓名
 	 */
@@ -134,11 +139,12 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 一审日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime firstAuditDate;
 	/**
 	 * 二审人员ID
 	 */
-	private Integer secondAuditPersonId;
+	private Long secondAuditPersonId;
 	/**
 	 * 二审人员姓名
 	 */
@@ -150,11 +156,12 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 二审日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime secondAuditDate;
 	/**
 	 * 三审人员ID
 	 */
-	private Integer thirdAudtiPersonId;
+	private Long thirdAudtiPersonId;
 	/**
 	 * 三审人员姓名
 	 */
@@ -166,6 +173,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 三审日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime thirdAuditDate;
 	/**
 	 * 收款方式
@@ -263,12 +271,44 @@ public class AnnualReportAuditModel  extends BaseEntity {
 		this.organizationName = organizationName;
 	}
 
-	public LocalDateTime getSerialDate() {
+	public Date getSerialDate() {
 		return serialDate;
 	}
 
-	public void setSerialDate(LocalDateTime serialDate) {
+	public void setSerialDate(Date serialDate) {
 		this.serialDate = serialDate;
+	}
+
+	public Date getReportDate() {
+		return reportDate;
+	}
+
+	public void setReportDate(Date reportDate) {
+		this.reportDate = reportDate;
+	}
+
+	public Long getFirstAuditPersonId() {
+		return firstAuditPersonId;
+	}
+
+	public void setFirstAuditPersonId(Long firstAuditPersonId) {
+		this.firstAuditPersonId = firstAuditPersonId;
+	}
+
+	public Long getSecondAuditPersonId() {
+		return secondAuditPersonId;
+	}
+
+	public void setSecondAuditPersonId(Long secondAuditPersonId) {
+		this.secondAuditPersonId = secondAuditPersonId;
+	}
+
+	public Long getThirdAudtiPersonId() {
+		return thirdAudtiPersonId;
+	}
+
+	public void setThirdAudtiPersonId(Long thirdAudtiPersonId) {
+		this.thirdAudtiPersonId = thirdAudtiPersonId;
 	}
 
 	public Double getAssets() {
@@ -391,13 +431,6 @@ public class AnnualReportAuditModel  extends BaseEntity {
 		this.companyType = companyType;
 	}
 
-	public LocalDateTime getReportDate() {
-		return reportDate;
-	}
-
-	public void setReportDate(LocalDateTime reportDate) {
-		this.reportDate = reportDate;
-	}
 
 	public String getRemarks() {
 		return remarks;
@@ -405,14 +438,6 @@ public class AnnualReportAuditModel  extends BaseEntity {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-	}
-
-	public Integer getFirstAuditPersonId() {
-		return firstAuditPersonId;
-	}
-
-	public void setFirstAuditPersonId(Integer firstAuditPersonId) {
-		this.firstAuditPersonId = firstAuditPersonId;
 	}
 
 	public String getFirstAuditPersonName() {
@@ -439,14 +464,6 @@ public class AnnualReportAuditModel  extends BaseEntity {
 		this.firstAuditDate = firstAuditDate;
 	}
 
-	public Integer getSecondAuditPersonId() {
-		return secondAuditPersonId;
-	}
-
-	public void setSecondAuditPersonId(Integer secondAuditPersonId) {
-		this.secondAuditPersonId = secondAuditPersonId;
-	}
-
 	public String getSecondAuditPersonName() {
 		return secondAuditPersonName;
 	}
@@ -471,13 +488,6 @@ public class AnnualReportAuditModel  extends BaseEntity {
 		this.secondAuditDate = secondAuditDate;
 	}
 
-	public Integer getThirdAudtiPersonId() {
-		return thirdAudtiPersonId;
-	}
-
-	public void setThirdAudtiPersonId(Integer thirdAudtiPersonId) {
-		this.thirdAudtiPersonId = thirdAudtiPersonId;
-	}
 
 	public String getThirdAuditPersonName() {
 		return thirdAuditPersonName;

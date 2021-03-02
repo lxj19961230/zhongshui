@@ -100,6 +100,7 @@
 
 	<insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true" >
 		insert into annual_report_audit (
+			id,
 			`year`,
 			report_serial,
 			state,
@@ -146,6 +147,7 @@
 			update_time
 		)
  	    values (
+ 	    	#{id},
 			#{year},
 			#{reportSerial},
 			#{state},
@@ -189,7 +191,7 @@
 			#{amountReceived},
 			#{isDeleted},
 			NOW(),
-			NULL
+			NOW()
 		)
 	</insert>
 
@@ -324,7 +326,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from annual_report_audit
-		where 1=1
+		where is_deleted = 0
 		<if test="searchValue != null and searchValue != ''">
 			AND customerName like concat('%', #{searchValue}, '%')
 		</if>
@@ -339,6 +341,9 @@
 		</if>
 		<!-- 数据范围过滤 -->
 		${params.dataScope}
+	</select>
+	<select id="findMaxId" resultType="java.lang.Integer">
+		select max(id) from annual_report_audit
 	</select>
 
 </mapper>

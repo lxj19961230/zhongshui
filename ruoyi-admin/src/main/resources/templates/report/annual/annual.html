@@ -53,14 +53,15 @@
 		var editFlag = [[${@permission.hasPermi('report:annual:edit')}]];
 		var removeFlag = [[${@permission.hasPermi('report:annual:remove')}]];
 		var datas = [[${@dict.getType('report_status')}]];
+		var datasindustry = [[${@dict.getType('annual_Industry_type')}]];
 		var prefix = ctx + "report/annual"
 
 		$(function() {
 		    var options = {
 		        url: prefix + "/list",
-		        createUrl: prefix + "/add/{id}",
+				createUrl: prefix + "/add",
 		        updateUrl: prefix + "/edit/{id}",
-		        removeUrl: prefix + "/remove/{id}",
+		        removeUrl: prefix + "/remove",
 				sortName: "createTime",
 				sortOrder: "desc",
 		        modalName: "年报",
@@ -116,7 +117,10 @@
 				{
 					field: 'industry',
 					title: '行业',
-					align: "left"
+					align: "center",
+					formatter: function(value, row, index) {
+						return $.table.selectDictLabel(datasindustry, value);
+					}
 				},
 				{
 					field: 'firstAuditPersonName',
@@ -134,12 +138,12 @@
 					align: "left"
 				},
 		        {
-		            field: 'status',
+		            field: 'state',
 		            title: '状态',
 		            align: "center",
-		            formatter: function(value, item, index) {
-		            	return $.table.selectDictLabel(datas, item.status);
-		            }
+					formatter: function(value, row, index) {
+						return $.table.selectDictLabel(datas, value);
+					}
 		        },
 		        {
 		            field: 'createTime',

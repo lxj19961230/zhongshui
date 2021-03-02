@@ -24,4 +24,5 @@ public interface AnnualReportAuditModelMapper {
 
     List<AnnualReportAuditModel> selectActiveList(AnnualReportAuditModel model);
 
+    Integer findMaxId();
 }

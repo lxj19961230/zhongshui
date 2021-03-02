@@ -15,4 +15,6 @@ public interface AnnualService {
      * 查询
      */
     List<AnnualReportAuditModel> selectDeptList(AnnualReportAuditModel model);
+
+    int insert(AnnualReportAuditModel data);
 }
