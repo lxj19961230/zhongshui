@@ -4,6 +4,7 @@ import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.domain.entity.SysRole;
 import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
@@ -116,5 +117,28 @@ public class AnnualController extends BaseController {
         ExcelUtil<AnnualReportAuditModel> util = new ExcelUtil<>(AnnualReportAuditModel.class);
         return util.exportExcel(list, "_年报审计");
     }
+
+    /**
+     * 修改
+     */
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Integer id, ModelMap mmap)
+    {
+        mmap.put("annual", annualService.selectById(id));
+        return prefix + "/edit";
+    }
+
+    /**
+     * 修改保存
+     */
+    @RequiresPermissions("annual:report:edit")
+    @Log(title = "年报审计", businessType = BusinessType.UPDATE)
+    @PostMapping("/edit")
+    @ResponseBody
+    public AjaxResult editSave(@Validated AnnualReportAuditModel annualReportAuditModel)
+    {
+        return toAjax(annualService.update(annualReportAuditModel));
+    }
+
 
 }

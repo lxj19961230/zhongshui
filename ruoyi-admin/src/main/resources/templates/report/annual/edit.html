@@ -6,16 +6,16 @@
 </head>
 <body>
     <div class="main-content">
-        <form id="annual-add" class="form-horizontal" th:object="${loginUser}">
-
-            <h4 class="form-header h4">年报信息</h4>
+        <form id="annual-edit" class="form-horizontal" th:object="${annual}">
+            <input name="id" type="hidden" id="id" th:value="*{id}"/>
+            <h4 class="form-header h4">编辑</h4>
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">业务员：</label>
                         <div class="col-sm-8">
-                            <input name="userName" id="userName" class="form-control" type="text" maxlength="30" th:value="*{loginName}" disabled required>
+                            <input name="userName" id="userName" class="form-control" type="text" maxlength="30" th:value="${annual.userName}" disabled required>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">部门：</label>
                         <div class="col-sm-8">
-                            <input name="organizationName" id="organizationName" class="form-control" type="text" maxlength="30" th:value="*{deptName}" disabled required>
+                            <input name="organizationName" id="organizationName" class="form-control" type="text" maxlength="30" th:value="${annual.organizationName}" disabled required>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">业务单位：</label>
                         <div class="col-sm-8">
-                            <input name="customerName" placeholder="请输入业务单位" class="form-control" type="text" maxlength="30" required>
+                            <input name="customerName" placeholder="请输入业务单位" class="form-control" type="text" maxlength="30" th:value="${annual.customerName}" required>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                         <div class="col-sm-8">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" class="time-input form-control" name="serialDate" required>
+                                <input type="text" class="time-input form-control" name="serialDate" th:value="${annual.serialDate}" required>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">资产(万)：</label>
                         <div class="col-sm-8">
-                            <input id="assets" name="assets" placeholder="请输入资产" class="form-control" type="text" maxlength="10" required>
+                            <input id="assets" name="assets" placeholder="请输入资产" class="form-control" type="text" maxlength="10" th:value="${annual.assets}" required>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">负债(万)：</label>
                         <div class="col-sm-8">
-                            <input id="liabilities" name="liabilities" placeholder="请输入负债" class="form-control" maxlength="10" required>
+                            <input id="liabilities" name="liabilities" placeholder="请输入负债" class="form-control" maxlength="10" th:value="${annual.liabilities}" required>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">实收资本(万)：</label>
                         <div class="col-sm-8">
-                            <input id="paidInCapital" name="paidInCapital" placeholder="请输入实收资本" class="form-control" type="text" maxlength="10" required>
+                            <input id="paidInCapital" name="paidInCapital" placeholder="请输入实收资本" class="form-control" type="text" maxlength="10" th:value="${annual.paidInCapital}" required>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">净资产(万)：</label>
                         <div class="col-sm-8">
-                            <input id="netAssets" name="netAssets" placeholder="请输入净资产" class="form-control" type="text" maxlength="10" required>
+                            <input id="netAssets" name="netAssets" placeholder="请输入净资产" class="form-control" type="text" maxlength="10" th:value="${annual.netAssets}" required>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">收入(万)：</label>
                         <div class="col-sm-8">
-                            <input id="income" name="income" placeholder="请输入收入" class="form-control" type="text" maxlength="10" required>
+                            <input id="income" name="income" placeholder="请输入收入" class="form-control" type="text" maxlength="10" th:value="${annual.income}" required>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">利润总额(万)：</label>
                         <div class="col-sm-8">
-                            <input id="totalProfit" name="totalProfit" placeholder="请输入利润总额" class="form-control" type="text" maxlength="10" required>
+                            <input id="totalProfit" name="totalProfit" placeholder="请输入利润总额" class="form-control" type="text" maxlength="10" th:value="${annual.totalProfit}" required>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">所得税(万)：</label>
                         <div class="col-sm-8">
-                            <input id="incomeTax" name="incomeTax" placeholder="请输入所得税" class="form-control" type="text" maxlength="10" required>
+                            <input id="incomeTax" name="incomeTax" placeholder="请输入所得税" class="form-control" type="text" maxlength="10" th:value="${annual.incomeTax}" required>
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                         <label class="col-sm-4 control-label is-required">意见类型：</label>
                         <div class="col-sm-8">
                             <select name="opinionType" class="form-control" th:with="type=${@dict.getType('annual_opinion_type')}">
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${annual.opinionType}"></option>
                             </select>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">联系人：</label>
                         <div class="col-sm-8">
-                            <input id="contact" name="contact" placeholder="请输入联系人" class="form-control" type="text" maxlength="10" required>
+                            <input id="contact" name="contact" placeholder="请输入联系人" class="form-control" type="text" maxlength="10" th:value="${annual.contact}" required>
                         </div>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">电话：</label>
                         <div class="col-sm-8">
-                            <input id="tel" name="tel" placeholder="请输入电话" class="form-control" type="text" maxlength="11" required>
+                            <input id="tel" name="tel" placeholder="请输入电话" class="form-control" type="text" maxlength="11" th:value="${annual.tel}" required>
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">地址：</label>
                         <div class="col-sm-8">
-                            <input id="address" name="address" placeholder="请输入地址" class="form-control" type="text" maxlength="100" required>
+                            <input id="address" name="address" placeholder="请输入地址" class="form-control" type="text" maxlength="100" th:value="${annual.address}" required>
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                         <label class="col-sm-4 control-label is-required">行业：</label>
                         <div class="col-sm-8">
                             <select name="industry" class="form-control m-b" th:with="type=${@dict.getType('annual_Industry_type')}">
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${annual.industry}"></option>
                             </select>
                         </div>
                     </div>
@@ -192,7 +192,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">社会统一信用代码：</label>
                         <div class="col-sm-8">
-                            <input id="unifiedSocialCreditCode" name="unifiedSocialCreditCode" placeholder="请输入社会统一信用代码" class="form-control" type="text" maxlength="15" required>
+                            <input id="unifiedSocialCreditCode" name="unifiedSocialCreditCode" placeholder="请输入社会统一信用代码" class="form-control" type="text" maxlength="15" th:value="${annual.unifiedSocialCreditCode}" required>
                         </div>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label is-required">审计年度：</label>
                         <div class="col-sm-8">
-                            <input id="auditYear" name="auditYear" placeholder="请输入审计年度" class="form-control" type="text" maxlength="4" required>
+                            <input id="auditYear" name="auditYear" placeholder="请输入审计年度" class="form-control" type="text" maxlength="4" th:value="${annual.auditYear}" required>
                         </div>
                     </div>
                 </div>
@@ -214,7 +214,7 @@
                         <label class="col-sm-4 control-label is-required">企业类型：</label>
                         <div class="col-sm-8">
                             <select name="companyType" class="form-control m-b" th:with="type=${@dict.getType('annual_company_type')}" required>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${annual.companyType}"></option>
                             </select>
                         </div>
                     </div>
@@ -225,7 +225,7 @@
                         <div class="col-sm-8">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" class="time-input form-control" name="reportDate" required>
+                                <input type="text" class="time-input form-control" name="reportDate" th:data="${annual.reportDateStr}" required>
                             </div>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
                                 <label class="col-sm-4 control-label">一审：</label>
                                 <div class="col-sm-8">
                                     <select name="firstAuditPersonId" class="form-control m-b" th:with="type=${@sysdict.getUserList()}">
-                                        <option th:each="user : ${type}" th:text="${user.loginName}" th:value="${user.userId}"></option>
+                                        <option th:each="user : ${type}" th:text="${user.loginName}" th:value="${user.userId}" th:field="${annual.firstAuditPersonId}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -254,7 +254,7 @@
                                 <label class="col-sm-4 control-label">二审：</label>
                                 <div class="col-sm-8">
                                     <select name="secondAuditPersonId" class="form-control m-b" th:with="type=${@sysdict.getUserList()}">
-                                        <option th:each="user : ${type}" th:text="${user.loginName}" th:value="${user.userId}"></option>
+                                        <option th:each="user : ${type}" th:text="${user.loginName}" th:value="${user.userId}" th:field="${annual.secondAuditPersonId}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -264,7 +264,7 @@
                                 <label class="col-sm-4 control-label">三审：</label>
                                 <div class="col-sm-8">
                                     <select name="thirdAudtiPersonId" class="form-control m-b" th:with="type=${@sysdict.getUserList()}">
-                                        <option th:each="user : ${type}" th:text="${user.loginName}" th:value="${user.userId}"></option>
+                                        <option th:each="user : ${type}" th:text="${user.loginName}" th:value="${user.userId}" th:field="${annual.thirdAudtiPersonId}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -281,7 +281,7 @@
                     <div class="form-group">
                         <label class="col-xs-2 control-label">备注：</label>
                         <div class="col-xs-10">
-                            <textarea name="remarks" maxlength="500" class="form-control" rows="3"></textarea>
+                            <textarea name="remarks" maxlength="500" class="form-control" rows="3">[[*{remarks}]]</textarea>
                         </div>
                     </div>
                 </div>
@@ -303,7 +303,7 @@
 	<script>
 	    var prefix = ctx + "report/annual";
 	
-        $("#annual-add").validate({
+        $("#annual-edit").validate({
         	onkeyup: false,
         	rules:{
                 assets:{
@@ -343,10 +343,10 @@
             var userName = $("#userName").val();
             var organizationName = $("#organizationName").val();
 	        if ($.validate.form() ) {
-	        	var data = $("#annual-add").serializeArray();
+	        	var data = $("#annual-edit").serializeArray();
                 data.push({"name": "userName", "value": userName});
                 data.push({"name": "organizationName", "value": organizationName});
-	        	$.operate.saveTab(prefix + "/add", data);
+	        	$.operate.saveTab(prefix + "/edit", data);
 	        }
 	    }
     </script>

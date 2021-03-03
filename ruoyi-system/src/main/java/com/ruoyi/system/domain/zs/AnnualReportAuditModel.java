@@ -2,9 +2,11 @@ package com.ruoyi.system.domain.zs;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+import com.ruoyi.common.utils.DateUtils;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -64,6 +66,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	@Excel(name = "报告日期", width = 30, dateFormat = "yyyy-MM-dd", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date serialDate;
+	private String serialDateStr;
 	/**
 	 * 资产
 	 */
@@ -145,6 +148,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	@Excel(name = "报告日期", width = 30, dateFormat = "yyyy-MM-dd", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date reportDate;
+	private String reportDateStr;
 	/**
 	 * 备注
 	 */
@@ -168,7 +172,8 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	 */
 	@Excel(name = "一审日期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime firstAuditDate;
+	private Date firstAuditDate;
+	private String firstAuditDateStr;
 	/**
 	 * 二审人员ID
 	 */
@@ -187,7 +192,8 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	 */
 	@Excel(name = "二审日期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime secondAuditDate;
+	private Date secondAuditDate;
+	private String secondAuditDateStr;
 	/**
 	 * 三审人员ID
 	 */
@@ -206,7 +212,8 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	 */
 	@Excel(name = "三审日期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime thirdAuditDate;
+	private Date thirdAuditDate;
+	private String thirdAuditDateStr;
 	/**
 	 * 收款方式
 	 */
@@ -219,6 +226,74 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	 * 逻辑删除 0存在；1删除；
 	 */
 	private Integer isDeleted;
+
+
+	public String getSerialDateStr() {
+		if(Objects.nonNull(serialDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",serialDate);
+		}
+		return serialDateStr;
+	}
+
+	public void setSerialDateStr(String serialDateStr) {
+		this.serialDateStr = serialDateStr;
+	}
+
+	public String getReportDateStr() {
+		if(Objects.nonNull(reportDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",reportDate);
+		}
+		return reportDateStr;
+	}
+
+	public void setReportDateStr(String reportDateStr) {
+		this.reportDateStr = reportDateStr;
+	}
+
+	public void setFirstAuditDate(Date firstAuditDate) {
+		this.firstAuditDate = firstAuditDate;
+	}
+
+	public String getFirstAuditDateStr() {
+		if(Objects.nonNull(firstAuditDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss",firstAuditDate);
+		}
+		return firstAuditDateStr;
+	}
+
+	public void setFirstAuditDateStr(String firstAuditDateStr) {
+		this.firstAuditDateStr = firstAuditDateStr;
+	}
+
+	public void setSecondAuditDate(Date secondAuditDate) {
+		this.secondAuditDate = secondAuditDate;
+	}
+
+	public String getSecondAuditDateStr() {
+		if(Objects.nonNull(secondAuditDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss",secondAuditDate);
+		}
+		return secondAuditDateStr;
+	}
+
+	public void setSecondAuditDateStr(String secondAuditDateStr) {
+		this.secondAuditDateStr = secondAuditDateStr;
+	}
+
+	public void setThirdAuditDate(Date thirdAuditDate) {
+		this.thirdAuditDate = thirdAuditDate;
+	}
+
+	public String getThirdAuditDateStr() {
+		if(Objects.nonNull(thirdAuditDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss",thirdAuditDate);
+		}
+		return thirdAuditDateStr;
+	}
+
+	public void setThirdAuditDateStr(String thirdAuditDateStr) {
+		this.thirdAuditDateStr = thirdAuditDateStr;
+	}
 
 	public AnnualReportAuditModel() {
 	}
@@ -489,14 +564,6 @@ public class AnnualReportAuditModel  extends BaseEntity {
 		this.firstAuditOpinion = firstAuditOpinion;
 	}
 
-	public LocalDateTime getFirstAuditDate() {
-		return firstAuditDate;
-	}
-
-	public void setFirstAuditDate(LocalDateTime firstAuditDate) {
-		this.firstAuditDate = firstAuditDate;
-	}
-
 	public String getSecondAuditPersonName() {
 		return secondAuditPersonName;
 	}
@@ -513,15 +580,6 @@ public class AnnualReportAuditModel  extends BaseEntity {
 		this.secondAuditOpinion = secondAuditOpinion;
 	}
 
-	public LocalDateTime getSecondAuditDate() {
-		return secondAuditDate;
-	}
-
-	public void setSecondAuditDate(LocalDateTime secondAuditDate) {
-		this.secondAuditDate = secondAuditDate;
-	}
-
-
 	public String getThirdAuditPersonName() {
 		return thirdAuditPersonName;
 	}
@@ -536,14 +594,6 @@ public class AnnualReportAuditModel  extends BaseEntity {
 
 	public void setThirdAuditOpinion(String thirdAuditOpinion) {
 		this.thirdAuditOpinion = thirdAuditOpinion;
-	}
-
-	public LocalDateTime getThirdAuditDate() {
-		return thirdAuditDate;
-	}
-
-	public void setThirdAuditDate(LocalDateTime thirdAuditDate) {
-		this.thirdAuditDate = thirdAuditDate;
 	}
 
 	public String getPaymentMethod() {

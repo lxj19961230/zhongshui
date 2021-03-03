@@ -68,4 +68,18 @@ public class AnnualServiceImpl implements AnnualService {
         }
         return 1;
     }
+
+    @Override
+    public AnnualReportAuditModel selectById(Integer id) {
+        return annualReportAuditModelMapper.findById(id);
+    }
+
+    @Override
+    public int update(AnnualReportAuditModel data) {
+        data.setYear(data.getAuditYear());
+        data.setFirstAuditPersonName(userMapper.selectUserById(data.getFirstAuditPersonId()).getLoginName());
+        data.setSecondAuditPersonName(userMapper.selectUserById(data.getSecondAuditPersonId()).getLoginName());
+        data.setThirdAuditPersonName(userMapper.selectUserById(data.getThirdAudtiPersonId()).getLoginName());
+        return annualReportAuditModelMapper.updateById(data);
+    }
 }
