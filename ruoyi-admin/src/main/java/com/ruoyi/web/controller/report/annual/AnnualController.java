@@ -140,5 +140,12 @@ public class AnnualController extends BaseController {
         return toAjax(annualService.update(annualReportAuditModel));
     }
 
+    @GetMapping("/detail/{id}")
+    public String detail(@PathVariable("id") Integer id, ModelMap mmap)
+    {
+        mmap.put("annual", annualService.selectById(id));
+        return prefix + "/detail";
+    }
+
 
 }

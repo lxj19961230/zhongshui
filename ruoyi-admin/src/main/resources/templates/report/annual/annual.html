@@ -79,7 +79,10 @@
                  {
 		            field: 'reportSerial',
 		            title: '文号',
-		            align: "left"
+		            align: "left",
+					 formatter: function(value, row, index) {
+						 return '<a href="javascript:void(0)" onclick="detail(\'' + row.id + '\')">' + value + '</a>';
+					 }
 		        },
 		        {
 		            field: 'customerName',
@@ -175,6 +178,11 @@
 		function audit(id) {
 			var url = prefix + '/audit/' + id;
 			$.modal.open("审核", url);
+		}
+		/* 详情 */
+		function detail(id) {
+			var url = prefix + '/detail/' + id;
+			$.modal.openTab("审核", url);
 		}
 	</script>
 </body>
