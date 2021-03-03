@@ -9,6 +9,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.ShiroUtils;
 import com.ruoyi.common.utils.StringUtils;
+import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.system.domain.SysUserOnline;
 import com.ruoyi.system.domain.zs.AnnualReportAuditModel;
 import com.ruoyi.system.service.ISysUserOnlineService;
@@ -103,6 +104,17 @@ public class AnnualController extends BaseController {
     public AjaxResult remove(String ids)
     {
         return toAjax(annualService.deleteByIds(ids));
+    }
+
+    @Log(title = "年报审计", businessType = BusinessType.EXPORT)
+    @RequiresPermissions("annual:report:export")
+    @PostMapping("/export")
+    @ResponseBody
+    public AjaxResult export(AnnualReportAuditModel auditModel)
+    {
+        List<AnnualReportAuditModel> list = (List<AnnualReportAuditModel>) list(auditModel).getRows();
+        ExcelUtil<AnnualReportAuditModel> util = new ExcelUtil<>(AnnualReportAuditModel.class);
+        return util.exportExcel(list, "_年报审计");
     }
 
 }

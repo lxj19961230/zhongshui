@@ -1,5 +1,6 @@
 package com.ruoyi.system.domain.zs;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 import java.time.LocalDateTime;
@@ -17,22 +18,27 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 年份
 	 */
+	@Excel(name = "年份")
 	private Integer year;
 	/**
 	 * 业务文档序列号
 	 */
+	@Excel(name = "业务文档序列号")
 	private Integer reportSerial;
 	/**
 	 * 新建1；存档33；失效555；撤档7777；
 	 */
+	@Excel(name = "状态", readConverterExp = "1=新建,33=存档,555=失效,7777=撤档")
 	private Integer state;
 	/**
 	 * 业务报告存储路径
 	 */
+	@Excel(name = "业务报告存储路径")
 	private String reportPath;
 	/**
 	 * 业务单位
 	 */
+	@Excel(name = "业务单位")
 	private String customerName;
 	/**
 	 * 业务员ID
@@ -41,6 +47,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 业务员姓名
 	 */
+	@Excel(name = "业务员姓名")
 	private String userName;
 	/**
 	 * 部门ID
@@ -49,80 +56,99 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 部门名称
 	 */
+	@Excel(name = "部门名称")
 	private String organizationName;
 	/**
 	 * 取号日期
 	 */
+	@Excel(name = "报告日期", width = 30, dateFormat = "yyyy-MM-dd", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date serialDate;
 	/**
 	 * 资产
 	 */
+	@Excel(name = "资产",cellType = Excel.ColumnType.NUMERIC)
 	private Double assets;
 	/**
 	 * 负债
 	 */
+	@Excel(name = "负债",cellType = Excel.ColumnType.NUMERIC)
 	private Double liabilities;
 	/**
 	 * 实收资本
 	 */
+	@Excel(name = "实收资本",cellType = Excel.ColumnType.NUMERIC)
 	private Double paidInCapital;
 	/**
 	 * 净资产
 	 */
+	@Excel(name = "净资产",cellType = Excel.ColumnType.NUMERIC)
 	private Double netAssets;
 	/**
 	 * 收入
 	 */
+	@Excel(name = "收入",cellType = Excel.ColumnType.NUMERIC)
 	private Double income;
 	/**
 	 * 利润总额
 	 */
+	@Excel(name = "利润总额",cellType = Excel.ColumnType.NUMERIC)
 	private Double totalProfit;
 	/**
 	 * 所得税
 	 */
+	@Excel(name = "所得税",cellType = Excel.ColumnType.NUMERIC)
 	private Double incomeTax;
 	/**
 	 * 意见类型
 	 */
+	@Excel(name = "意见类型")
 	private String opinionType;
 	/**
 	 * 联系人姓名
 	 */
+	@Excel(name = "联系人姓名")
 	private String contact;
 	/**
 	 * 电话
 	 */
+	@Excel(name = "电话")
 	private String tel;
 	/**
 	 * 地址
 	 */
+	@Excel(name = "地址")
 	private String address;
 	/**
 	 * 行业
 	 */
+	@Excel(name = "行业", readConverterExp = "1=金融行业,2=制造业,3=批发和零售业,4=房地产业")
 	private String industry;
 	/**
 	 * 统一社会信用代码
 	 */
+	@Excel(name = "统一社会信用代码")
 	private String unifiedSocialCreditCode;
 	/**
 	 * 审计年度
 	 */
+	@Excel(name = "审计年度",cellType = Excel.ColumnType.NUMERIC)
 	private Integer auditYear;
 	/**
 	 * 企业类型
 	 */
+	@Excel(name = "企业类型", readConverterExp = "1=上市公司,2=一般企业,3=国有企业,4=事业单位,5=民间非营利组织,6=其他企业")
 	private String companyType;
 	/**
 	 * 报告日期
 	 */
+	@Excel(name = "报告日期", width = 30, dateFormat = "yyyy-MM-dd", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date reportDate;
 	/**
 	 * 备注
 	 */
+	@Excel(name = "备注")
 	private String remarks;
 	/**
 	 * 一审人员ID
@@ -131,6 +157,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 一审人员姓名
 	 */
+	@Excel(name = "一审")
 	private String firstAuditPersonName;
 	/**
 	 * 一审意见
@@ -139,6 +166,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 一审日期
 	 */
+	@Excel(name = "一审日期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime firstAuditDate;
 	/**
@@ -148,6 +176,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 二审人员姓名
 	 */
+	@Excel(name = "二审")
 	private String secondAuditPersonName;
 	/**
 	 * 二审意见
@@ -156,6 +185,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 二审日期
 	 */
+	@Excel(name = "二审日期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime secondAuditDate;
 	/**
@@ -165,6 +195,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 三审人员姓名
 	 */
+	@Excel(name = "三审")
 	private String thirdAuditPersonName;
 	/**
 	 * 三审意见
@@ -173,6 +204,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 三审日期
 	 */
+	@Excel(name = "三审日期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime thirdAuditDate;
 	/**
