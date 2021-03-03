@@ -37,7 +37,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 业务员ID
 	 */
-	private Integer userId;
+	private Long userId;
 	/**
 	 * 业务员姓名
 	 */
@@ -45,7 +45,7 @@ public class AnnualReportAuditModel  extends BaseEntity {
 	/**
 	 * 部门ID
 	 */
-	private Integer organizationId;
+	private Long organizationId;
 	/**
 	 * 部门名称
 	 */
@@ -239,13 +239,6 @@ public class AnnualReportAuditModel  extends BaseEntity {
 		this.customerName = customerName;
 	}
 
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
 
 	public String getUserName() {
 		return userName;
@@ -255,11 +248,19 @@ public class AnnualReportAuditModel  extends BaseEntity {
 		this.userName = userName;
 	}
 
-	public Integer getOrganizationId() {
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public Long getOrganizationId() {
 		return organizationId;
 	}
 
-	public void setOrganizationId(Integer organizationId) {
+	public void setOrganizationId(Long organizationId) {
 		this.organizationId = organizationId;
 	}
 

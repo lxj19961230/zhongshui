@@ -330,6 +330,9 @@
 		<if test="searchValue != null and searchValue != ''">
 			AND customerName like concat('%', #{searchValue}, '%')
 		</if>
+		<if test="userId != null and userId != ''">
+			AND (user_id = #{userId} or first_audit_person_id = #{userId} or second_audit_person_id = #{userId} or third_audti_person_id = #{userId})
+		</if>
 		<if test="state != null and state != ''">
 			AND state = #{state}
 		</if>

@@ -17,4 +17,6 @@ public interface AnnualService {
     List<AnnualReportAuditModel> selectDeptList(AnnualReportAuditModel model);
 
     int insert(AnnualReportAuditModel data);
+
+    int deleteByIds(String ids);
 }
