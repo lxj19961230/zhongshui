@@ -1,352 +1,82 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-	<th:block th:include="include :: header('新增年报')" />
-	<th:block th:include="include :: select2-css" />
+	<th:block th:include="include :: header('审核')" />
+    <th:block th:include="include :: select2-css" />
 </head>
 <body>
     <div class="main-content">
-        <form id="annual-add" class="form-horizontal" th:object="${loginUser}">
-
-            <h4 class="form-header h4">年报信息</h4>
+        <form id="annual-audit" class="form-horizontal" th:object="${annual}">
+            <input name="id" type="hidden" id="id" th:value="*{id}"/>
             <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">业务员：</label>
-                        <div class="col-sm-8">
-                            <input name="userName" id="userName" class="form-control" type="text" maxlength="30" th:value="*{loginName}" disabled required>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">审核人：</label>
+                    <div class="col-sm-10">
+                        <label class="control-label">[[*{userName}]]</label>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">部门：</label>
-                        <div class="col-sm-8">
-                            <input name="organizationName" id="organizationName" class="form-control" type="text" maxlength="30" th:value="*{deptName}" disabled required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">业务单位：</label>
-                        <div class="col-sm-8">
-                            <input name="customerName" placeholder="请输入业务单位" class="form-control" type="text" maxlength="30" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">取号日期：</label>
-                        <div class="col-sm-8">
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" class="time-input form-control" name="serialDate" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">资产(万)：</label>
-                        <div class="col-sm-8">
-                            <input id="assets" name="assets" placeholder="请输入资产" class="form-control" type="text" maxlength="10" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">负债(万)：</label>
-                        <div class="col-sm-8">
-                            <input id="liabilities" name="liabilities" placeholder="请输入负债" class="form-control" maxlength="10" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">实收资本(万)：</label>
-                        <div class="col-sm-8">
-                            <input id="paidInCapital" name="paidInCapital" placeholder="请输入实收资本" class="form-control" type="text" maxlength="10" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">净资产(万)：</label>
-                        <div class="col-sm-8">
-                            <input id="netAssets" name="netAssets" placeholder="请输入净资产" class="form-control" type="text" maxlength="10" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">收入(万)：</label>
-                        <div class="col-sm-8">
-                            <input id="income" name="income" placeholder="请输入收入" class="form-control" type="text" maxlength="10" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">利润总额(万)：</label>
-                        <div class="col-sm-8">
-                            <input id="totalProfit" name="totalProfit" placeholder="请输入利润总额" class="form-control" type="text" maxlength="10" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">所得税(万)：</label>
-                        <div class="col-sm-8">
-                            <input id="incomeTax" name="incomeTax" placeholder="请输入所得税" class="form-control" type="text" maxlength="10" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">意见类型：</label>
-                        <div class="col-sm-8">
-                            <select name="opinionType" class="form-control" th:with="type=${@dict.getType('annual_opinion_type')}">
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">联系人：</label>
-                        <div class="col-sm-8">
-                            <input id="contact" name="contact" placeholder="请输入联系人" class="form-control" type="text" maxlength="10" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">电话：</label>
-                        <div class="col-sm-8">
-                            <input id="tel" name="tel" placeholder="请输入电话" class="form-control" type="text" maxlength="11" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">地址：</label>
-                        <div class="col-sm-8">
-                            <input id="address" name="address" placeholder="请输入地址" class="form-control" type="text" maxlength="100" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">行业：</label>
-                        <div class="col-sm-8">
-                            <select name="industry" class="form-control m-b" th:with="type=${@dict.getType('annual_Industry_type')}">
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">社会统一信用代码：</label>
-                        <div class="col-sm-8">
-                            <input id="unifiedSocialCreditCode" name="unifiedSocialCreditCode" placeholder="请输入社会统一信用代码" class="form-control" type="text" maxlength="15" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">审计年度：</label>
-                        <div class="col-sm-8">
-                            <input id="auditYear" name="auditYear" placeholder="请输入审计年度" class="form-control" type="text" maxlength="4" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">企业类型：</label>
-                        <div class="col-sm-8">
-                            <select name="companyType" class="form-control m-b" th:with="type=${@dict.getType('annual_company_type')}" required>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label is-required">报告日期：</label>
-                        <div class="col-sm-8">
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" class="time-input form-control" name="reportDate" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-
-            <h4 class="form-header h4">其他信息</h4>
-            <div class="row">
-                <div class="col-sm-8">
-                    <label class="col-sm-4 control-label">指定审计：</label>
-                    <div class="col-sm-8">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">一审：</label>
-                                <div class="col-sm-8">
-                                    <select name="firstAuditPersonId" class="form-control m-b" th:with="type=${@sysdict.getUserList()}">
-                                        <option th:each="user : ${type}" th:text="${user.loginName}" th:value="${user.userId}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">二审：</label>
-                                <div class="col-sm-8">
-                                    <select name="secondAuditPersonId" class="form-control m-b" th:with="type=${@sysdict.getUserList()}">
-                                        <option th:each="user : ${type}" th:text="${user.loginName}" th:value="${user.userId}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">三审：</label>
-                                <div class="col-sm-8">
-                                    <select name="thirdAudtiPersonId" class="form-control m-b" th:with="type=${@sysdict.getUserList()}">
-                                        <option th:each="user : ${type}" th:text="${user.loginName}" th:value="${user.userId}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-sm-10">
-                    <div class="form-group">
-                        <label class="col-xs-2 control-label">备注：</label>
-                        <div class="col-xs-10">
-                            <textarea name="remark" maxlength="500" class="form-control" rows="3"></textarea>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" is-required>审核意见：</label>
+                    <div class="col-sm-2">
+                        <select name="audit" class="form-control m-b" th:with="type=${@dict.getType('audit_status')}">
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                        </select>
                     </div>
-                </div>
-                <div class="col-sm-2">
-
+                    <div class="col-sm-8"></div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">意见备注：</label>
+                    <div class="col-xs-10">
+                        <textarea name="remark" id="remake" maxlength="200" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
         </form>
     </div>
-      
-    <div class="row">
-        <div class="col-sm-offset-5 col-sm-10">
-            <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存</button>&nbsp;
-            <button type="button" class="btn btn-sm btn-danger" onclick="closeItem()"><i class="fa fa-reply-all"></i>关 闭 </button>
-        </div>
-    </div>
-	<th:block th:include="include :: footer" />
-	<th:block th:include="include :: select2-js" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: select2-js" />
 	<script>
 	    var prefix = ctx + "report/annual";
 	
-        $("#annual-add").validate({
+        $("#annual-audit").validate({
         	onkeyup: false,
         	rules:{
-                assets:{
-        			number: true
-        		},
-                liabilities:{
-                    number: true
-                },
-                paidInCapital:{
-                    number: true
-                },
-                netAssets:{
-                    number: true
-                },
-                income:{
-                    number: true
-                },
-                totalProfit:{
-                    number: true
-                },
-                incomeTax:{
-                    number: true
-                },
-                auditYear:{
-                    number: true,
-                    range: [1949,2120]
-                },
-                tel: {
-                    isPhone:true
-                },
         	},
-
             focusCleanup: true
         });
         
         function submitHandler() {
-            var userName = $("#userName").val();
-            var organizationName = $("#organizationName").val();
 	        if ($.validate.form() ) {
-	        	var data = $("#annual-add").serializeArray();
-                data.push({"name": "userName", "value": userName});
-                data.push({"name": "organizationName", "value": organizationName});
-	        	$.operate.saveTab(prefix + "/add", data);
+	        	//var data = $("#annual-audit").serializeArray();
+	        	//$.operate.saveTab(prefix + "/audit", data);
+                var id = $("input[name='id']").val();
+                var audit = $("select[name='audit']").val();
+                var remake = $("#remake").val();
+                $.ajax({
+                    cache : true,
+                    type : "POST",
+                    url : prefix + "/audit",
+                    data : {
+                        "id": id,
+                        "audit": audit,
+                        "remake": remake
+                    },
+                    async : false,
+                    error : function(request) {
+                        $.modal.alertError("系统错误");
+                    },
+                    success : function(data) {
+                        $.operate.successCallback(data);
+                    }
+                });
 	        }
 	    }
     </script>

@@ -1,18 +1,14 @@
 package com.ruoyi.web.controller.report.annual;
 
 import com.ruoyi.common.annotation.Log;
-import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.core.domain.entity.SysRole;
-import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.common.utils.ShiroUtils;
-import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.system.domain.SysUserOnline;
 import com.ruoyi.system.domain.zs.AnnualReportAuditModel;
+import com.ruoyi.system.domain.zs.other.AuditReq;
 import com.ruoyi.system.service.ISysUserOnlineService;
 import com.ruoyi.system.service.ISysUserService;
 import com.ruoyi.system.service.zs.AnnualService;
@@ -147,5 +143,23 @@ public class AnnualController extends BaseController {
         return prefix + "/detail";
     }
 
+    @GetMapping("/audit/{id}")
+    public String audit(@PathVariable("id") Integer id, ModelMap mmap)
+    {
+        mmap.put("annual", annualService.selectById(id));
+        return prefix + "/audit";
+    }
+
+    @RequiresPermissions("annual:report:audit")
+    @Log(title = "年报审计", businessType = BusinessType.UPDATE)
+    @PostMapping("/audit")
+    @ResponseBody
+    public AjaxResult audit(@Validated AuditReq req)
+    {
+        SysUserOnline sysUserOnline = iSysUserOnlineService.selectOnlineById(getSession().getId());
+        Long loginId = iSysUserService.selectUserByLoginName(sysUserOnline.getLoginName()).getUserId();
+        req.setLoginUserId(loginId);
+        return toAjax(annualService.audit(req));
+    }
 
 }

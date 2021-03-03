@@ -1,6 +1,7 @@
 package com.ruoyi.system.service.zs;
 
 import com.ruoyi.system.domain.zs.AnnualReportAuditModel;
+import com.ruoyi.system.domain.zs.other.AuditReq;
 
 import java.util.List;
 
@@ -23,4 +24,6 @@ public interface AnnualService {
     AnnualReportAuditModel selectById(Integer id);
 
     int update(AnnualReportAuditModel annualReportAuditModel);
+
+    int audit(AuditReq req);
 }
