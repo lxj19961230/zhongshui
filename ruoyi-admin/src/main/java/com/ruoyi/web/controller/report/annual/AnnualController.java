@@ -85,7 +85,7 @@ public class AnnualController extends BaseController {
     /**
      * 新增保存用户
      */
-    @RequiresPermissions("annual:report:add")
+    @RequiresPermissions("report:annual:add")
     @Log(title = "年报审计", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -94,7 +94,7 @@ public class AnnualController extends BaseController {
         return toAjax(annualService.insert(data));
     }
 
-    @RequiresPermissions("annual:report:remove")
+    @RequiresPermissions("report:annual:remove")
     @Log(title = "年报审计", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
@@ -104,7 +104,7 @@ public class AnnualController extends BaseController {
     }
 
     @Log(title = "年报审计", businessType = BusinessType.EXPORT)
-    @RequiresPermissions("annual:report:export")
+    @RequiresPermissions("report:annual:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(AnnualReportAuditModel auditModel)
@@ -127,7 +127,7 @@ public class AnnualController extends BaseController {
     /**
      * 修改保存
      */
-    @RequiresPermissions("annual:report:edit")
+    @RequiresPermissions("report:annual:edit")
     @Log(title = "年报审计", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -150,7 +150,7 @@ public class AnnualController extends BaseController {
         return prefix + "/audit";
     }
 
-    @RequiresPermissions("annual:report:audit")
+    @RequiresPermissions("report:annual:audit")
     @Log(title = "年报审计", businessType = BusinessType.UPDATE)
     @PostMapping("/audit")
     @ResponseBody
@@ -162,7 +162,7 @@ public class AnnualController extends BaseController {
         return toAjax(annualService.audit(req));
     }
 
-    @RequiresPermissions("annual:report:edit")
+    @RequiresPermissions("report:annual:edit")
     @Log(title = "年报审计", businessType = BusinessType.UPDATE)
     @PostMapping("/back")
     @ResponseBody
