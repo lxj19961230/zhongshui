@@ -114,4 +114,12 @@ public class AnnualServiceImpl implements AnnualService {
         annualReportAuditModelMapper.updateById(annualReportAuditModel);
         return 1;
     }
+
+    @Override
+    public int back(Integer id) {
+        AnnualReportAuditModel annualReportAuditModel = new AnnualReportAuditModel();
+        annualReportAuditModel.setId(id);
+        annualReportAuditModel.setState(RecordState.ABANDONED.getCode());
+        return annualReportAuditModelMapper.updateById(annualReportAuditModel);
+    }
 }

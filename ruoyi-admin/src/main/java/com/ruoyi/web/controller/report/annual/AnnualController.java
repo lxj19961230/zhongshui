@@ -162,4 +162,12 @@ public class AnnualController extends BaseController {
         return toAjax(annualService.audit(req));
     }
 
+    @RequiresPermissions("annual:report:edit")
+    @Log(title = "年报审计", businessType = BusinessType.UPDATE)
+    @PostMapping("/back")
+    @ResponseBody
+    public AjaxResult back(@Validated Integer id)
+    {
+        return toAjax(annualService.back(id));
+    }
 }

@@ -26,4 +26,6 @@ public interface AnnualService {
     int update(AnnualReportAuditModel annualReportAuditModel);
 
     int audit(AuditReq req);
+
+    int back(Integer id);
 }
