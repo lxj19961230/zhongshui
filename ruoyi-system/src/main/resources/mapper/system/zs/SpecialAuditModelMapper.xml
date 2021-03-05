@@ -48,7 +48,7 @@
 
 	<sql id="Base_Column_List" >
 		id,
-		year,
+		`year`,
 		report_serial,
 		state,
 		report_path,
@@ -296,6 +296,32 @@
 		<if test="amountReceived != null "> and amount_received = #{amountReceived}</if>
 		<if test="isDeleted != null "> and is_deleted = #{isDeleted}</if>
 		</where>
+	</select>
+    <select id="selectActiveList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from special_audit
+		where is_deleted = 0
+		<if test="searchValue != null and searchValue != ''">
+			AND auditProjectName like concat('%', #{searchValue}, '%')
+		</if>
+		<if test="userId != null and userId != ''">
+			AND (user_id = #{userId} or first_audit_person_id = #{userId} or second_audit_person_id = #{userId} or third_audti_person_id = #{userId})
+		</if>
+		<if test="state != null and state != ''">
+			AND state = #{state}
+		</if>
+		<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+			AND date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+		</if>
+		<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+			AND date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+		</if>
+		<!-- 数据范围过滤 -->
+		${params.dataScope}
+	</select>
+	<select id="findMaxId" resultType="java.lang.Integer">
+		select max(id) from special_audit
 	</select>
 
 </mapper>

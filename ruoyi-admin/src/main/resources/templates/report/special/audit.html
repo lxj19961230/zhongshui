@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('审核')" />
+    <th:block th:include="include :: select2-css" />
+</head>
+<body>
+    <div class="main-content">
+        <form id="annual-audit" class="form-horizontal" th:object="${data}">
+            <input name="id" type="hidden" id="id" th:value="*{id}"/>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">审核人：</label>
+                    <div class="col-sm-10">
+                        <label class="control-label">[[*{userName}]]</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" is-required>审核意见：</label>
+                    <div class="col-sm-2">
+                        <select name="audit" class="form-control m-b" th:with="type=${@dict.getType('audit_status')}">
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">意见备注：</label>
+                    <div class="col-xs-4">
+                        <textarea name="remark" id="remake" maxlength="200" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="col-xs-6"></div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: select2-js" />
+	<script>
+	    var prefix = ctx + "report/special";
+	
+        $("#annual-audit").validate({
+        	onkeyup: false,
+        	rules:{
+        	},
+            focusCleanup: true
+        });
+        
+        function submitHandler() {
+	        if ($.validate.form() ) {
+	        	//var data = $("#annual-audit").serializeArray();
+	        	//$.operate.saveTab(prefix + "/audit", data);
+                var id = $("input[name='id']").val();
+                var audit = $("select[name='audit']").val();
+                var remake = $("#remake").val();
+                $.ajax({
+                    cache : true,
+                    type : "POST",
+                    url : prefix + "/audit",
+                    data : {
+                        "id": id,
+                        "audit": audit,
+                        "remake": remake
+                    },
+                    async : false,
+                    error : function(request) {
+                        $.modal.alertError("系统错误");
+                    },
+                    success : function(data) {
+                        $.operate.successCallback(data);
+                    }
+                });
+	        }
+	    }
+    </script>
+</body>
+</html>
