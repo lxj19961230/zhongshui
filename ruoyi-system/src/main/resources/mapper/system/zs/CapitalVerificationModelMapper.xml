@@ -304,4 +304,32 @@
 		</where>
 	</select>
 
+	<select id="selectActiveList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from capital_verification
+		where is_deleted = 0
+		<if test="searchValue != null and searchValue != ''">
+			AND report_serial like concat('%', #{searchValue}, '%')
+		</if>
+		<if test="userId != null and userId != ''">
+			AND (user_id = #{userId} or first_audit_person_id = #{userId} or second_audit_person_id = #{userId} or third_audti_person_id = #{userId})
+		</if>
+		<if test="state != null and state != ''">
+			AND state = #{state}
+		</if>
+		<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+			AND date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+		</if>
+		<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+			AND date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+		</if>
+		<!-- 数据范围过滤 -->
+		${params.dataScope}
+	</select>
+	<select id="findMaxId" resultType="java.lang.Integer">
+		select max(id) from capital_verification
+	</select>
+
+
 </mapper>

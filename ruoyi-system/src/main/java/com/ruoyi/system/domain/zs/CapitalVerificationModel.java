@@ -1,13 +1,16 @@
 package com.ruoyi.system.domain.zs;
-import lombok.*;
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ruoyi.common.annotation.Excel;
+import com.ruoyi.common.core.domain.BaseEntity;
+import java.util.Date;
 
 
 /**
  *capital_verification bean
  */
-public class CapitalVerificationModel  extends IdModel  {
+public class CapitalVerificationModel  extends BaseEntity{
 
+	private Integer id;
 
 	/**
 	 * 年份
@@ -32,7 +35,7 @@ public class CapitalVerificationModel  extends IdModel  {
 	/**
 	 * 业务员ID
 	 */
-	private Integer userId;
+	private Long userId;
 	/**
 	 * 业务员姓名
 	 */
@@ -48,7 +51,7 @@ public class CapitalVerificationModel  extends IdModel  {
 	/**
 	 * 取号日期
 	 */
-	private LocalDateTime serialDate;
+	private Date serialDate;
 	/**
 	 * 验资类型
 	 */
@@ -76,42 +79,58 @@ public class CapitalVerificationModel  extends IdModel  {
 	/**
 	 * 联系人姓名
 	 */
+	@Excel(name = "联系人姓名")
 	private String contact;
 	/**
 	 * 电话
 	 */
+	@Excel(name = "电话")
 	private String tel;
 	/**
 	 * 地址
 	 */
+	@Excel(name = "地址")
 	private String address;
 	/**
 	 * 行业
 	 */
+	@Excel(name = "行业", readConverterExp = "1=金融行业,2=制造业,3=批发和零售业,4=房地产业")
 	private String industry;
 	/**
 	 * 统一社会信用代码
 	 */
+	@Excel(name = "统一社会信用代码")
 	private String unifiedSocialCreditCode;
+	/**
+	 * 审计年度
+	 */
+	@Excel(name = "审计年度",cellType = Excel.ColumnType.NUMERIC)
+	private Integer auditYear;
 	/**
 	 * 企业类型
 	 */
+	@Excel(name = "企业类型", readConverterExp = "1=上市公司,2=一般企业,3=国有企业,4=事业单位,5=民间非营利组织,6=其他企业")
 	private String companyType;
 	/**
 	 * 报告日期
 	 */
-	private LocalDateTime reportDate;
+	@Excel(name = "报告日期", width = 30, dateFormat = "yyyy-MM-dd", type = Excel.Type.EXPORT)
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date reportDate;
+	private String reportDateStr;
 	/**
 	 * 备注
 	 */
+	@Excel(name = "备注")
 	private String remarks;
 	/**
 	 * 一审人员ID
 	 */
-	private Integer firstAuditPersonId;
+	private Long firstAuditPersonId;
 	/**
 	 * 一审人员姓名
 	 */
+	@Excel(name = "一审")
 	private String firstAuditPersonName;
 	/**
 	 * 一审意见
@@ -120,14 +139,18 @@ public class CapitalVerificationModel  extends IdModel  {
 	/**
 	 * 一审日期
 	 */
-	private LocalDateTime firstAuditDate;
+	@Excel(name = "一审日期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date firstAuditDate;
+	private String firstAuditDateStr;
 	/**
 	 * 二审人员ID
 	 */
-	private Integer secondAuditPersonId;
+	private Long secondAuditPersonId;
 	/**
 	 * 二审人员姓名
 	 */
+	@Excel(name = "二审")
 	private String secondAuditPersonName;
 	/**
 	 * 二审意见
@@ -136,14 +159,18 @@ public class CapitalVerificationModel  extends IdModel  {
 	/**
 	 * 二审日期
 	 */
-	private LocalDateTime secondAuditDate;
+	@Excel(name = "二审日期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date secondAuditDate;
+	private String secondAuditDateStr;
 	/**
 	 * 三审人员ID
 	 */
-	private Integer thirdAudtiPersonId;
+	private Long thirdAudtiPersonId;
 	/**
 	 * 三审人员姓名
 	 */
+	@Excel(name = "三审")
 	private String thirdAuditPersonName;
 	/**
 	 * 三审意见
@@ -152,7 +179,10 @@ public class CapitalVerificationModel  extends IdModel  {
 	/**
 	 * 三审日期
 	 */
-	private LocalDateTime thirdAuditDate;
+	@Excel(name = "三审日期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date thirdAuditDate;
+	private String thirdAuditDateStr;
 	/**
 	 * 收款方式
 	 */
@@ -167,6 +197,80 @@ public class CapitalVerificationModel  extends IdModel  {
 	private Integer isDeleted;
 
 	public CapitalVerificationModel() {
+	}
+
+
+
+	public Long getFirstAuditPersonId() {
+		return firstAuditPersonId;
+	}
+
+	public Long getSecondAuditPersonId() {
+		return secondAuditPersonId;
+	}
+
+	public Long getThirdAudtiPersonId() {
+		return thirdAudtiPersonId;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getAuditYear() {
+		return auditYear;
+	}
+
+	public void setAuditYear(Integer auditYear) {
+		this.auditYear = auditYear;
+	}
+
+	public String getReportDateStr() {
+		return reportDateStr;
+	}
+
+	public void setReportDateStr(String reportDateStr) {
+		this.reportDateStr = reportDateStr;
+	}
+
+	public void setFirstAuditPersonId(Long firstAuditPersonId) {
+		this.firstAuditPersonId = firstAuditPersonId;
+	}
+
+	public String getFirstAuditDateStr() {
+		return firstAuditDateStr;
+	}
+
+	public void setFirstAuditDateStr(String firstAuditDateStr) {
+		this.firstAuditDateStr = firstAuditDateStr;
+	}
+
+	public void setSecondAuditPersonId(Long secondAuditPersonId) {
+		this.secondAuditPersonId = secondAuditPersonId;
+	}
+
+	public String getSecondAuditDateStr() {
+		return secondAuditDateStr;
+	}
+
+	public void setSecondAuditDateStr(String secondAuditDateStr) {
+		this.secondAuditDateStr = secondAuditDateStr;
+	}
+
+	public void setThirdAudtiPersonId(Long thirdAudtiPersonId) {
+		this.thirdAudtiPersonId = thirdAudtiPersonId;
+	}
+
+	public String getThirdAuditDateStr() {
+		return thirdAuditDateStr;
+	}
+
+	public void setThirdAuditDateStr(String thirdAuditDateStr) {
+		this.thirdAuditDateStr = thirdAuditDateStr;
 	}
 
 	public Integer getYear() {
@@ -209,11 +313,11 @@ public class CapitalVerificationModel  extends IdModel  {
 		this.customerName = customerName;
 	}
 
-	public Integer getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -241,11 +345,11 @@ public class CapitalVerificationModel  extends IdModel  {
 		this.organizationName = organizationName;
 	}
 
-	public LocalDateTime getSerialDate() {
+	public Date getSerialDate() {
 		return serialDate;
 	}
 
-	public void setSerialDate(LocalDateTime serialDate) {
+	public void setSerialDate(Date serialDate) {
 		this.serialDate = serialDate;
 	}
 
@@ -345,11 +449,11 @@ public class CapitalVerificationModel  extends IdModel  {
 		this.companyType = companyType;
 	}
 
-	public LocalDateTime getReportDate() {
+	public Date getReportDate() {
 		return reportDate;
 	}
 
-	public void setReportDate(LocalDateTime reportDate) {
+	public void setReportDate(Date reportDate) {
 		this.reportDate = reportDate;
 	}
 
@@ -359,14 +463,6 @@ public class CapitalVerificationModel  extends IdModel  {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-	}
-
-	public Integer getFirstAuditPersonId() {
-		return firstAuditPersonId;
-	}
-
-	public void setFirstAuditPersonId(Integer firstAuditPersonId) {
-		this.firstAuditPersonId = firstAuditPersonId;
 	}
 
 	public String getFirstAuditPersonName() {
@@ -385,20 +481,12 @@ public class CapitalVerificationModel  extends IdModel  {
 		this.firstAuditOpinion = firstAuditOpinion;
 	}
 
-	public LocalDateTime getFirstAuditDate() {
+	public Date getFirstAuditDate() {
 		return firstAuditDate;
 	}
 
-	public void setFirstAuditDate(LocalDateTime firstAuditDate) {
+	public void setFirstAuditDate(Date firstAuditDate) {
 		this.firstAuditDate = firstAuditDate;
-	}
-
-	public Integer getSecondAuditPersonId() {
-		return secondAuditPersonId;
-	}
-
-	public void setSecondAuditPersonId(Integer secondAuditPersonId) {
-		this.secondAuditPersonId = secondAuditPersonId;
 	}
 
 	public String getSecondAuditPersonName() {
@@ -417,21 +505,14 @@ public class CapitalVerificationModel  extends IdModel  {
 		this.secondAuditOpinion = secondAuditOpinion;
 	}
 
-	public LocalDateTime getSecondAuditDate() {
+	public Date getSecondAuditDate() {
 		return secondAuditDate;
 	}
 
-	public void setSecondAuditDate(LocalDateTime secondAuditDate) {
+	public void setSecondAuditDate(Date secondAuditDate) {
 		this.secondAuditDate = secondAuditDate;
 	}
 
-	public Integer getThirdAudtiPersonId() {
-		return thirdAudtiPersonId;
-	}
-
-	public void setThirdAudtiPersonId(Integer thirdAudtiPersonId) {
-		this.thirdAudtiPersonId = thirdAudtiPersonId;
-	}
 
 	public String getThirdAuditPersonName() {
 		return thirdAuditPersonName;
@@ -449,11 +530,11 @@ public class CapitalVerificationModel  extends IdModel  {
 		this.thirdAuditOpinion = thirdAuditOpinion;
 	}
 
-	public LocalDateTime getThirdAuditDate() {
+	public Date getThirdAuditDate() {
 		return thirdAuditDate;
 	}
 
-	public void setThirdAuditDate(LocalDateTime thirdAuditDate) {
+	public void setThirdAuditDate(Date thirdAuditDate) {
 		this.thirdAuditDate = thirdAuditDate;
 	}
 
