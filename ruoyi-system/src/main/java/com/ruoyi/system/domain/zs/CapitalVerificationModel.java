@@ -2,7 +2,10 @@ package com.ruoyi.system.domain.zs;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+import com.ruoyi.common.utils.DateUtils;
+
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -15,22 +18,27 @@ public class CapitalVerificationModel  extends BaseEntity{
 	/**
 	 * 年份
 	 */
+	@Excel(name = "年份",cellType = Excel.ColumnType.NUMERIC)
 	private Integer year;
 	/**
 	 * 业务文档序列号
 	 */
+	@Excel(name = "业务文档序列号",cellType = Excel.ColumnType.NUMERIC)
 	private Integer reportSerial;
 	/**
 	 * 新建1；存档33；失效555；撤档7777；
 	 */
+	@Excel(name = "状态", readConverterExp = "1=新建,33=存档,555=失效,7777=撤档")
 	private Integer state;
 	/**
 	 * 业务报告存储路径
 	 */
+	@Excel(name = "业务报告存储路径",cellType = Excel.ColumnType.NUMERIC)
 	private String reportPath;
 	/**
 	 * 业务单位
 	 */
+	@Excel(name = "业务单位")
 	private String customerName;
 	/**
 	 * 业务员ID
@@ -39,6 +47,7 @@ public class CapitalVerificationModel  extends BaseEntity{
 	/**
 	 * 业务员姓名
 	 */
+	@Excel(name = "业务员姓名")
 	private String userName;
 	/**
 	 * 部门ID
@@ -47,34 +56,44 @@ public class CapitalVerificationModel  extends BaseEntity{
 	/**
 	 * 部门名称
 	 */
+	@Excel(name = "部门名称")
 	private String organizationName;
 	/**
 	 * 取号日期
 	 */
+	@Excel(name = "报告日期", width = 30, dateFormat = "yyyy-MM-dd", type = Excel.Type.EXPORT)
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date serialDate;
+	private String serialDateStr;
 	/**
 	 * 验资类型
 	 */
+	@Excel(name = "验资类型", readConverterExp = "1=设立,2=增资,3=首次出资,4=二次出资,5=变更,6=其他")
 	private String capitalVerificationType;
 	/**
 	 * 资产原值（增资）
 	 */
+	@Excel(name = "资产原值",cellType = Excel.ColumnType.NUMERIC)
 	private Double originalValueOfAssets;
 	/**
 	 * 增资额度
 	 */
+	@Excel(name = "增资额度",cellType = Excel.ColumnType.NUMERIC)
 	private Double increaseCapital;
 	/**
 	 * 验资额度
 	 */
+	@Excel(name = "验资额度",cellType = Excel.ColumnType.NUMERIC)
 	private Double assessCapital;
 	/**
 	 * 币种
 	 */
+	@Excel(name = "币种", readConverterExp = "RMB=人民币,USD=美元,JPY=日元,HKD=港币,EUR=欧元,GBP=英镑,OTHER=其他")
 	private String currency;
 	/**
 	 * 报告属性
 	 */
+	@Excel(name = "报告属性", readConverterExp = "1=设立,2=变更股权,3=二次验资,4=其他")
 	private String reportProperties;
 	/**
 	 * 联系人姓名
@@ -200,7 +219,6 @@ public class CapitalVerificationModel  extends BaseEntity{
 	}
 
 
-
 	public Long getFirstAuditPersonId() {
 		return firstAuditPersonId;
 	}
@@ -229,49 +247,21 @@ public class CapitalVerificationModel  extends BaseEntity{
 		this.auditYear = auditYear;
 	}
 
-	public String getReportDateStr() {
-		return reportDateStr;
-	}
-
-	public void setReportDateStr(String reportDateStr) {
-		this.reportDateStr = reportDateStr;
-	}
 
 	public void setFirstAuditPersonId(Long firstAuditPersonId) {
 		this.firstAuditPersonId = firstAuditPersonId;
 	}
 
-	public String getFirstAuditDateStr() {
-		return firstAuditDateStr;
-	}
-
-	public void setFirstAuditDateStr(String firstAuditDateStr) {
-		this.firstAuditDateStr = firstAuditDateStr;
-	}
 
 	public void setSecondAuditPersonId(Long secondAuditPersonId) {
 		this.secondAuditPersonId = secondAuditPersonId;
 	}
 
-	public String getSecondAuditDateStr() {
-		return secondAuditDateStr;
-	}
-
-	public void setSecondAuditDateStr(String secondAuditDateStr) {
-		this.secondAuditDateStr = secondAuditDateStr;
-	}
 
 	public void setThirdAudtiPersonId(Long thirdAudtiPersonId) {
 		this.thirdAudtiPersonId = thirdAudtiPersonId;
 	}
 
-	public String getThirdAuditDateStr() {
-		return thirdAuditDateStr;
-	}
-
-	public void setThirdAuditDateStr(String thirdAuditDateStr) {
-		this.thirdAuditDateStr = thirdAuditDateStr;
-	}
 
 	public Integer getYear() {
 		return year;
@@ -561,4 +551,60 @@ public class CapitalVerificationModel  extends BaseEntity{
 	public void setIsDeleted(Integer isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+
+
+	public String getThirdAuditDateStr() {
+		if(Objects.nonNull(thirdAuditDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",thirdAuditDate);
+		}
+		return thirdAuditDateStr;
+	}
+
+	public void setThirdAuditDateStr(String thirdAuditDateStr) {
+		this.thirdAuditDateStr = thirdAuditDateStr;
+	}
+
+	public String getSerialDateStr() {
+		if(Objects.nonNull(serialDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",serialDate);
+		}
+		return serialDateStr;
+	}
+
+	public void setSerialDateStr(String serialDateStr) {
+		this.serialDateStr = serialDateStr;
+	}
+
+	public String getSecondAuditDateStr() {
+		if(Objects.nonNull(secondAuditDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",secondAuditDate);
+		}
+		return firstAuditDateStr;
+	}
+
+	public void setSecondAuditDateStr(String secondAuditDateStr) {
+		this.secondAuditDateStr = secondAuditDateStr;
+	}
+	public String getFirstAuditDateStr() {
+		if(Objects.nonNull(firstAuditDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",firstAuditDate);
+		}
+		return firstAuditDateStr;
+	}
+
+	public void setFirstAuditDateStr(String firstAuditDateStr) {
+		this.firstAuditDateStr = firstAuditDateStr;
+	}
+
+	public String getReportDateStr() {
+		if(Objects.nonNull(reportDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",reportDate);
+		}
+		return reportDateStr;
+	}
+
+	public void setReportDateStr(String reportDateStr) {
+		this.reportDateStr = reportDateStr;
+	}
+
 }

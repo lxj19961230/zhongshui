@@ -49,7 +49,7 @@
 
 	<sql id="Base_Column_List" >
 		id,
-		year,
+		`year`,
 		report_serial,
 		state,
 		report_path,
@@ -95,7 +95,7 @@
 	<insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true" >
 		insert into capital_verification (
 			id,
-			year,
+			`year`,
 			report_serial,
 			state,
 			report_path,

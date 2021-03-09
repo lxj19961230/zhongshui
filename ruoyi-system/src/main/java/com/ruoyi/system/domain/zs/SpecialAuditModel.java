@@ -455,34 +455,12 @@ public class SpecialAuditModel  extends BaseEntity {
 		this.serialDate = serialDate;
 	}
 
-	public String getSerialDateStr() {
-		if(Objects.nonNull(serialDate)){
-			return DateUtils.parseDateToStr("yyyy-MM-dd",serialDate);
-		}
-		return serialDateStr;
-	}
-
-	public void setSerialDateStr(String serialDateStr) {
-		this.serialDateStr = serialDateStr;
-	}
-
 	public Date getAuditStartYear() {
 		return auditStartYear;
 	}
 
 	public void setAuditStartYear(Date auditStartYear) {
 		this.auditStartYear = auditStartYear;
-	}
-
-	public String getAuditStartYearStr() {
-		if(Objects.nonNull(auditStartYear)){
-			return DateUtils.parseDateToStr("yyyy-MM-dd",auditStartYear);
-		}
-		return auditStartYearStr;
-	}
-
-	public void setAuditStartYearStr(String auditStartYearStr) {
-		this.auditStartYearStr = auditStartYearStr;
 	}
 
 	public Date getAuditEndYear() {
@@ -493,34 +471,12 @@ public class SpecialAuditModel  extends BaseEntity {
 		this.auditEndYear = auditEndYear;
 	}
 
-	public String getAuditEndYearStr() {
-		if(Objects.nonNull(auditEndYear)){
-			return DateUtils.parseDateToStr("yyyy-MM-dd",auditEndYear);
-		}
-		return auditEndYearStr;
-	}
-
-	public void setAuditEndYearStr(String auditEndYearStr) {
-		this.auditEndYearStr = auditEndYearStr;
-	}
-
 	public Date getReportDate() {
 		return reportDate;
 	}
 
 	public void setReportDate(Date reportDate) {
 		this.reportDate = reportDate;
-	}
-
-	public String getReportDateStr() {
-		if(Objects.nonNull(reportDate)){
-			return DateUtils.parseDateToStr("yyyy-MM-dd",reportDate);
-		}
-		return reportDateStr;
-	}
-
-	public void setReportDateStr(String reportDateStr) {
-		this.reportDateStr = reportDateStr;
 	}
 
 	public Long getFirstAuditPersonId() {
@@ -539,17 +495,6 @@ public class SpecialAuditModel  extends BaseEntity {
 		this.firstAuditDate = firstAuditDate;
 	}
 
-	public String getFirstAuditDateStr() {
-		if(Objects.nonNull(firstAuditDate)){
-			return DateUtils.parseDateToStr("yyyy-MM-dd",firstAuditDate);
-		}
-		return firstAuditDateStr;
-	}
-
-	public void setFirstAuditDateStr(String firstAuditDateStr) {
-		this.firstAuditDateStr = firstAuditDateStr;
-	}
-
 	public Long getSecondAuditPersonId() {
 		return secondAuditPersonId;
 	}
@@ -564,17 +509,6 @@ public class SpecialAuditModel  extends BaseEntity {
 
 	public void setSecondAuditDate(Date secondAuditDate) {
 		this.secondAuditDate = secondAuditDate;
-	}
-
-	public String getSecondAuditDateStr() {
-		if(Objects.nonNull(secondAuditDate)){
-			return DateUtils.parseDateToStr("yyyy-MM-dd",secondAuditDate);
-		}
-		return firstAuditDateStr;
-	}
-
-	public void setSecondAuditDateStr(String secondAuditDateStr) {
-		this.secondAuditDateStr = secondAuditDateStr;
 	}
 
 	public Long getThirdAudtiPersonId() {
@@ -603,4 +537,71 @@ public class SpecialAuditModel  extends BaseEntity {
 	public void setThirdAuditDateStr(String thirdAuditDateStr) {
 		this.thirdAuditDateStr = thirdAuditDateStr;
 	}
+
+	public String getSerialDateStr() {
+		if(Objects.nonNull(serialDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",serialDate);
+		}
+		return serialDateStr;
+	}
+
+	public void setSerialDateStr(String serialDateStr) {
+		this.serialDateStr = serialDateStr;
+	}
+
+	public String getSecondAuditDateStr() {
+		if(Objects.nonNull(secondAuditDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",secondAuditDate);
+		}
+		return firstAuditDateStr;
+	}
+
+	public void setSecondAuditDateStr(String secondAuditDateStr) {
+		this.secondAuditDateStr = secondAuditDateStr;
+	}
+	public String getFirstAuditDateStr() {
+		if(Objects.nonNull(firstAuditDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",firstAuditDate);
+		}
+		return firstAuditDateStr;
+	}
+
+	public void setFirstAuditDateStr(String firstAuditDateStr) {
+		this.firstAuditDateStr = firstAuditDateStr;
+	}
+
+	public String getAuditEndYearStr() {
+		if(Objects.nonNull(auditEndYear)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",auditEndYear);
+		}
+		return auditEndYearStr;
+	}
+
+	public void setAuditEndYearStr(String auditEndYearStr) {
+		this.auditEndYearStr = auditEndYearStr;
+	}
+	public String getReportDateStr() {
+		if(Objects.nonNull(reportDate)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",reportDate);
+		}
+		return reportDateStr;
+	}
+
+	public void setReportDateStr(String reportDateStr) {
+		this.reportDateStr = reportDateStr;
+	}
+
+	public String getAuditStartYearStr() {
+		if(Objects.nonNull(auditStartYear)){
+			return DateUtils.parseDateToStr("yyyy-MM-dd",auditStartYear);
+		}
+		return auditStartYearStr;
+	}
+
+	public void setAuditStartYearStr(String auditStartYearStr) {
+		this.auditStartYearStr = auditStartYearStr;
+	}
+
+
+
 }

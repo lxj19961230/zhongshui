@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-	<th:block th:include="include :: header('新增验资')" />
+	<th:block th:include="include :: header('专项审计详情')" />
 	<th:block th:include="include :: select2-css" />
 </head>
 <body>
     <div class="main-content">
-        <form id="annual-add" class="form-horizontal" th:object="${annual}">
+        <form id="annual-add" class="form-horizontal" th:object="${data}">
             <input name="id" type="hidden" id="id" th:value="*{id}"/>
-            <h4 class="form-header h4">验资信息详情</h4>
+            <h4 class="form-header h4">专项审计详情</h4>
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-4">
@@ -58,17 +58,19 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label ">资产：</label>
+                        <label class="col-sm-4 control-label is-required">验资类型：</label>
                         <div class="col-sm-8">
-                            <label class="control-label">[[*{assets}]]元</label>
+                            <select name="capitalVerificationType" class="form-control m-b" th:with="type=${@dict.getType('capital_type')}" disabled>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${data.capitalVerificationType}"></option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label ">负债(万)：</label>
+                        <label class="col-sm-4 control-label is-required">资产原值（增资）：</label>
                         <div class="col-sm-8">
-                            <label class="control-label">[[*{liabilities}]]元</label>
+                            <label class="control-label">[[*{originalValueOfAssets}]]</label>
                         </div>
                     </div>
                 </div>
@@ -80,38 +82,17 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label ">实收资本：</label>
+                        <label class="col-sm-4 control-label is-required">增资额度：</label>
                         <div class="col-sm-8">
-                            <label class="control-label">[[*{paidInCapital}]]元</label>
+                            <label class="control-label">[[*{increaseCapital}]]</label>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label ">净资产：</label>
+                        <label class="col-sm-4 control-label is-required">验资额度：</label>
                         <div class="col-sm-8">
-                            <label class="control-label">[[*{netAssets}]]元</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label ">收入：</label>
-                        <div class="col-sm-8">
-                            <label class="control-label">[[*{income}]]元</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label ">利润总额：</label>
-                        <div class="col-sm-8">
-                            <label class="control-label">[[*{totalProfit}]]元</label>
+                            <label class="control-label">[[*{assessCapital}]]</label>
                         </div>
                     </div>
                 </div>
@@ -122,18 +103,20 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label ">所得税：</label>
+                        <label class="col-sm-4 control-label is-required">币种：</label>
                         <div class="col-sm-8">
-                            <label class="control-label">[[*{incomeTax}]]元</label>
+                            <select name="currency" class="form-control m-b" th:with="type=${@dict.getType('currency_type')}" disabled>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${data.currency}"></option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label ">意见类型：</label>
+                        <label class="col-sm-4 control-label is-required">报告属性：</label>
                         <div class="col-sm-8">
-                            <select name="opinionType" class="form-control" th:with="type=${@dict.getType('annual_opinion_type')}" disabled>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${annual.opinionType}"></option>
+                            <select name="reportProperties" class="form-control m-b" th:with="type=${@dict.getType('creport_type')}" disabled>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${data.reportProperties}"></option>
                             </select>
                         </div>
                     </div>
@@ -177,7 +160,7 @@
                         <label class="col-sm-4 control-label ">行业：</label>
                         <div class="col-sm-8">
                             <select name="industry" class="form-control m-b" th:with="type=${@dict.getType('annual_Industry_type')}" disabled>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${annual.industry}"></option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${data.industry}"></option>
                             </select>
                         </div>
                     </div>
@@ -197,9 +180,11 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label ">审计年度：</label>
+                        <label class="col-sm-4 control-label ">报告日期：</label>
                         <div class="col-sm-8">
-                            <label class="control-label">[[*{auditYear}]]</label>
+                            <div class="input-group date">
+                                <label class="control-label">[[*{reportDateStr}]]</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -213,20 +198,13 @@
                         <label class="col-sm-4 control-label ">企业类型：</label>
                         <div class="col-sm-8">
                             <select name="companyType" class="form-control m-b" th:with="type=${@dict.getType('annual_company_type')}" disabled>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${annual.companyType}"></option>
+                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="${data.companyType}"></option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label ">报告日期：</label>
-                        <div class="col-sm-8">
-                            <div class="input-group date">
-                                <label class="control-label">[[*{reportDateStr}]]</label>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="col-sm-2"></div>
             </div>
@@ -356,17 +334,17 @@
       
     <div class="row">
         <div class="col-sm-offset-5 col-sm-10">
-            <label class="control-label" th:if="${annual.state}==7777">已撤销</label><label></label>
-            <label class="control-label" th:if="${annual.state}==33">已存档</label><label></label>
-            <label class="control-label" th:if="${annual.state}==555">已失效</label><label></label>
-            <button th:if="${annual.state}==1" type="button" class="btn btn-sm btn-warning" onclick="backItem()"><i class="fa fa-reply-all"></i>撤 销</button><label></label>
+            <label class="control-label" th:if="${data.state}==7777">已撤销</label><label></label>
+            <label class="control-label" th:if="${data.state}==33">已存档</label><label></label>
+            <label class="control-label" th:if="${data.state}==555">已失效</label><label></label>
+            <button th:if="${data.state}==1" type="button" class="btn btn-sm btn-warning" onclick="backItem()"><i class="fa fa-reply-all"></i>撤 销</button><label></label>
             <button type="button" class="btn btn-sm btn-danger" onclick="closeItem()"><i class="fa fa-reply-all"></i>关 闭 </button>
         </div>
     </div>
 	<th:block th:include="include :: footer" />
 	<th:block th:include="include :: select2-js" />
     <script>
-        var prefix = ctx + "report/annual";
+        var prefix = ctx + "report/special";
 
         function backItem() {
             if ($.validate.form() ) {

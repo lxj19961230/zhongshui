@@ -16,6 +16,7 @@ import org.apache.commons.compress.utils.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +35,7 @@ public class CapitalServiceImpl implements CapitalService {
     @Autowired
     private SysUserMapper userMapper;
 
-    private final int startNum = 1010001;
+    private final int startNum = 200001;
 
     @Override
     public List<CapitalVerificationModel> selectDeptList(CapitalVerificationModel model) {
@@ -49,7 +50,7 @@ public class CapitalServiceImpl implements CapitalService {
             throw new BusinessException("审核人员不能重复！");
         }
 
-        data.setYear(data.getAuditYear());
+        data.setYear(LocalDate.now().getYear());
         Integer maxId = capitalVerificationModelMapper.findMaxId();
         if(Objects.isNull(maxId) || maxId<startNum){
             data.setId(startNum);

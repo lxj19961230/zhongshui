@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('专项审计')" />
+	<th:block th:include="include :: header('验资')" />
 </head>
 <body class="gray-bg">
 	<div class="container-div">
@@ -35,10 +35,10 @@
 			</div>
 
 			<div class="btn-group-sm" id="toolbar" role="group">
-				<a class="btn btn-success" onclick="$.operate.addTab()" shiro:hasPermission="report:special:add">
+				<a class="btn btn-success" onclick="$.operate.addTab()" shiro:hasPermission="report:capital:add">
 					<i class="fa fa-plus"></i> 新增
 				</a>
-				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="report:special:export">
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="report:capital:export">
 					<i class="fa fa-download"></i> 导出
 				</a>
 			</div>
@@ -50,11 +50,14 @@
 	</div>
 	<th:block th:include="include :: footer" />
 	<script th:inline="javascript">
-		var editFlag = [[${@permission.hasPermi('report:special:edit')}]];
-		var removeFlag = [[${@permission.hasPermi('report:special:remove')}]];
+		var editFlag = [[${@permission.hasPermi('report:capital:edit')}]];
+		var removeFlag = [[${@permission.hasPermi('report:capital:remove')}]];
 		var datas = [[${@dict.getType('report_status')}]];
+		var currencys = [[${@dict.getType('currency_type')}]];
+		var capitals = [[${@dict.getType('capital_type')}]];
+		var creports = [[${@dict.getType('creport_type')}]];
 		var datasindustry = [[${@dict.getType('annual_Industry_type')}]];
-		var prefix = ctx + "report/special"
+		var prefix = ctx + "report/capital"
 
 		$(function() {
 		    var options = {
@@ -65,7 +68,7 @@
 				exportUrl: prefix + "/export",
 				sortName: "createTime",
 				sortOrder: "desc",
-		        modalName: "专项审计",
+		        modalName: "验资",
 		        columns: [
 				{
 					field: 'reportSerial',
@@ -76,29 +79,43 @@
 					}
 				},
 				{
-					field: 'year',
-					title: '年份',
+					field: 'originalValueOfAssets',
+					title: '资产原值',
 					align: "left"
 				},
 				{
-					field: 'auditProjectName',
-					title: '项目名称',
+					field: 'increaseCapital',
+					title: '增资额度',
 					align: "left"
 				},
 				{
-					field: 'mainIndicators',
-					title: '主要指标',
+					field: 'assessCapital',
+					title: '验资额度',
 					align: "left"
 				},
 				{
-					field: 'auditStartYearStr',
-					title: '审计开始时间',
-					align: "left"
+					field: 'currency',
+					title: '币种',
+					align: "left",
+					formatter: function(value, row, index) {
+						return $.table.selectDictLabel(currencys, value);
+					}
 				},
 				{
-					field: 'auditEndYearStr',
-					title: '审计结束时间',
-					align: "left"
+					field: 'capitalVerificationType',
+					title: '验资类型',
+					align: "left",
+					formatter: function(value, row, index) {
+						return $.table.selectDictLabel(capitals, value);
+					}
+				},
+				{
+					field: 'reportProperties',
+					title: '报告属性',
+					align: "left",
+					formatter: function(value, row, index) {
+						return $.table.selectDictLabel(creports, value);
+					}
 				},
 		        {
 		            field: 'customerName',

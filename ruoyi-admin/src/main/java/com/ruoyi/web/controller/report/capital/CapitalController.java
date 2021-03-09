@@ -12,7 +12,6 @@ import com.ruoyi.system.domain.zs.other.AuditReq;
 import com.ruoyi.system.service.ISysUserOnlineService;
 import com.ruoyi.system.service.ISysUserService;
 import com.ruoyi.system.service.zs.CapitalService;
-import com.ruoyi.system.service.zs.SpecialService;
 import com.ruoyi.web.controller.report.capital.resp.CapitalAuditResp;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.BeanUtils;
@@ -45,7 +44,7 @@ public class CapitalController extends BaseController {
     @GetMapping()
     public String dept()
     {
-        return prefix + "/special";
+        return prefix + "/capital";
     }
 
     @RequiresPermissions("report:capital:list")

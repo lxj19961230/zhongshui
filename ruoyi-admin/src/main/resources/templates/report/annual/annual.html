@@ -67,23 +67,19 @@
 				sortOrder: "desc",
 		        modalName: "年报",
 		        columns: [
-		        {
-					field:'id',
-					title: '序号'
+				{
+					field: 'reportSerial',
+					title: '文号',
+					align: "left",
+					formatter: function(value, row, index) {
+						return '<a href="javascript:void(0)" onclick="detail(\'' + row.id + '\')">' + value + '</a>';
+					}
 				},
 				{
 					field: 'year',
 					title: '年份',
 					align: "left"
 				},
-                 {
-		            field: 'reportSerial',
-		            title: '文号',
-		            align: "left",
-					 formatter: function(value, row, index) {
-						 return '<a href="javascript:void(0)" onclick="detail(\'' + row.id + '\')">' + value + '</a>';
-					 }
-		        },
 		        {
 		            field: 'customerName',
 		            title: '业务单位',
