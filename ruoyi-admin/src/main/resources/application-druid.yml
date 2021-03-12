@@ -8,7 +8,7 @@ spring:
             master:
                 url: jdbc:mysql://106.14.146.110:3306/zhongshui?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                 username: root
-                password: Lxj_1996@#
+                password: Zs_2021@#
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭

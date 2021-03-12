@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.zs.CodeRuleMapper">
+
+	<resultMap id="BaseResultMap" type="com.ruoyi.system.domain.zs.CodeRule">
+		<id column="sequence" jdbcType="INTEGER" property="sequence" />
+		<result column="year" jdbcType="INTEGER" property="year" />
+		<result column="type" jdbcType="INTEGER" property="type" />
+	</resultMap>
+
+	<sql id="Base_Column_List" >
+		sequence,
+		`year`,
+		`type`,
+		`active`
+	</sql>
+
+	<insert id="save" useGeneratedKeys="true" >
+		insert into code_rule (
+			sequence,
+			`year`,
+			`type`,
+			`active`
+		)
+ 	    values (
+ 	    	#{sequence},
+ 	    	#{year},
+			#{type},
+			#{active}
+		)
+	</insert>
+
+	<update id="updateActive">
+		update code_rule set `active` = 0 where `year` = #{year} and `sequence` = #{sequence} and `type` = #{type}
+	</update>
+
+	<select id="getAllDataForUpdateByTypeAndYear" resultType="com.ruoyi.system.domain.zs.CodeRule">
+		select * from code_rule where `year` = #{year} and `type` = #{type} for update
+	</select>
+
+
+</mapper>
