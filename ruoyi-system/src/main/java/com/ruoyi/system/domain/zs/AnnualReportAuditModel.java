@@ -276,6 +276,18 @@ public class AnnualReportAuditModel  extends BaseEntity {
 		return secondAuditDateStr;
 	}
 
+	public Date getFirstAuditDate() {
+		return firstAuditDate;
+	}
+
+	public Date getSecondAuditDate() {
+		return secondAuditDate;
+	}
+
+	public Date getThirdAuditDate() {
+		return thirdAuditDate;
+	}
+
 	public void setSecondAuditDateStr(String secondAuditDateStr) {
 		this.secondAuditDateStr = secondAuditDateStr;
 	}

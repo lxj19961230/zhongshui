@@ -2,6 +2,7 @@ package com.ruoyi.system.service.zs.impl;
 
 import com.ruoyi.common.core.text.Convert;
 import com.ruoyi.common.enums.zs.AuditEnum;
+import com.ruoyi.common.enums.zs.BizType;
 import com.ruoyi.common.enums.zs.RecordState;
 import com.ruoyi.common.exception.BusinessException;
 import com.ruoyi.common.utils.StringUtils;
@@ -12,6 +13,7 @@ import com.ruoyi.system.mapper.zs.CapitalVerificationModelMapper;
 import com.ruoyi.system.mapper.zs.CapitalVerificationModelMapper;
 import com.ruoyi.system.service.zs.CapitalService;
 import com.ruoyi.system.service.zs.SpecialService;
+import com.ruoyi.system.service.zs.manager.CodeRuleManager;
 import org.apache.commons.compress.utils.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,8 +36,10 @@ public class CapitalServiceImpl implements CapitalService {
     private CapitalVerificationModelMapper capitalVerificationModelMapper;
     @Autowired
     private SysUserMapper userMapper;
+    @Autowired
+    private CodeRuleManager codeRuleManager;
 
-    private final int startNum = 200001;
+    private final int startNum = 1;
 
     @Override
     public List<CapitalVerificationModel> selectDeptList(CapitalVerificationModel model) {
@@ -58,7 +62,7 @@ public class CapitalServiceImpl implements CapitalService {
             data.setId(maxId+1);
         }
 
-        data.setReportSerial(Integer.valueOf(data.getYear()+""+data.getId()));
+        data.setReportSerial(codeRuleManager.getNextCode(BizType.CAPITAL_VERIFICATION,data.getId(),LocalDate.now().getYear()));
         data.setIsDeleted(0);
         data.setFirstAuditPersonName(userMapper.selectUserById(data.getFirstAuditPersonId()).getLoginName());
         data.setSecondAuditPersonName(userMapper.selectUserById(data.getSecondAuditPersonId()).getLoginName());
@@ -78,6 +82,7 @@ public class CapitalServiceImpl implements CapitalService {
                 annualReportAuditModel.setId(id);
                 annualReportAuditModel.setIsDeleted(1);
                 capitalVerificationModelMapper.updateById(annualReportAuditModel);
+                codeRuleManager.disactive(BizType.CAPITAL_VERIFICATION,annualReportAuditModel.getId());
             }
         }
         return 1;

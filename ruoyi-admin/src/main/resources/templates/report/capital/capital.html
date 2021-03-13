@@ -14,7 +14,7 @@
 								关键字：<input type="text" name="searchValue"/>
 							</li>
 							<li>
-								审核筛选：<select name="status" th:with="type=${@dict.getType('report_status')}">
+								审核筛选：<select name="state" th:with="type=${@dict.getType('report_status')}">
 									<option value="">所有</option>
 									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
 								</select>
@@ -195,6 +195,9 @@
 						var actions = [];
 		            	if(row.needAudit==1){
 							actions.push('<a class="btn btn-primary btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="audit(\'' + row.id + '\')"><i class="fa fa-check"></i>审核</a> ');
+						}
+						if(row.needAudit==2){
+							actions.push('<label class="text-info' + editFlag + '" href="javascript:void(0)" ><i class="fa fa-check"></i>已审核 &nbsp;</label> ');
 						}
 		            	if(row.needOper==1){
 							actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editTab(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');

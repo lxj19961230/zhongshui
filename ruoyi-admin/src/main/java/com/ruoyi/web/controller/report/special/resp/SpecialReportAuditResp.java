@@ -9,7 +9,7 @@ import com.ruoyi.system.domain.zs.SpecialAuditModel;
  */
 public class SpecialReportAuditResp extends SpecialAuditModel {
 
-    //是否需要审核 0不能1能
+    //是否需要审核 0不能1能2已审核
     private int needAudit;
 
     //是否能操作 0不能1能

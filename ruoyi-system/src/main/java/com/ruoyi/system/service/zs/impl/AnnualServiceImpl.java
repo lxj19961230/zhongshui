@@ -2,6 +2,7 @@ package com.ruoyi.system.service.zs.impl;
 
 import com.ruoyi.common.core.text.Convert;
 import com.ruoyi.common.enums.zs.AuditEnum;
+import com.ruoyi.common.enums.zs.BizType;
 import com.ruoyi.common.enums.zs.RecordState;
 import com.ruoyi.common.exception.BusinessException;
 import com.ruoyi.common.utils.StringUtils;
@@ -10,11 +11,14 @@ import com.ruoyi.system.domain.zs.other.AuditReq;
 import com.ruoyi.system.mapper.SysUserMapper;
 import com.ruoyi.system.mapper.zs.AnnualReportAuditModelMapper;
 import com.ruoyi.system.service.zs.AnnualService;
+import com.ruoyi.system.service.zs.manager.CodeRuleManager;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.compress.utils.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -29,8 +33,10 @@ public class AnnualServiceImpl implements AnnualService {
     private AnnualReportAuditModelMapper annualReportAuditModelMapper;
     @Autowired
     private SysUserMapper userMapper;
+    @Autowired
+    private CodeRuleManager codeRuleManager;
 
-    private final int startNum = 1001;
+    private final int startNum = 1;
 
     @Override
     public List<AnnualReportAuditModel> selectDeptList(AnnualReportAuditModel model) {
@@ -38,6 +44,7 @@ public class AnnualServiceImpl implements AnnualService {
     }
 
     @Override
+    @Transactional
     public synchronized int insert(AnnualReportAuditModel data) {
 
         Set<Long> audits = Sets.newHashSet(data.getFirstAuditPersonId(),data.getSecondAuditPersonId(),data.getThirdAudtiPersonId());
@@ -53,7 +60,7 @@ public class AnnualServiceImpl implements AnnualService {
             data.setId(maxId+1);
         }
 
-        data.setReportSerial(Integer.valueOf(data.getYear()+""+data.getId()));
+        data.setReportSerial(codeRuleManager.getNextCode(BizType.ANNUAL_REPORT_AUDIT,data.getId(),Objects.isNull(data.getAuditYear())? LocalDate.now().getYear():data.getAuditYear()));
         data.setIsDeleted(0);
         data.setFirstAuditPersonName(userMapper.selectUserById(data.getFirstAuditPersonId()).getLoginName());
         data.setSecondAuditPersonName(userMapper.selectUserById(data.getSecondAuditPersonId()).getLoginName());
@@ -65,6 +72,7 @@ public class AnnualServiceImpl implements AnnualService {
     }
 
     @Override
+    @Transactional
     public int deleteByIds(String ids) {
         if(StringUtils.isNotBlank(ids)){
             Integer[] ss = Convert.toIntArray(ids);
@@ -73,6 +81,7 @@ public class AnnualServiceImpl implements AnnualService {
                 annualReportAuditModel.setId(id);
                 annualReportAuditModel.setIsDeleted(1);
                 annualReportAuditModelMapper.updateById(annualReportAuditModel);
+                codeRuleManager.disactive(BizType.ANNUAL_REPORT_AUDIT,annualReportAuditModel.getId());
             }
         }
         return 1;

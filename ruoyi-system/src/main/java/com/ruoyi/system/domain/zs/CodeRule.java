@@ -20,4 +20,6 @@ public class CodeRule implements Serializable {
 
     //0有效1失效
     private Integer active;
+
+    private Integer bizId;
 }

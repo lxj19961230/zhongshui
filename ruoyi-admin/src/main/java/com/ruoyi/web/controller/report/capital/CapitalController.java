@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 
@@ -63,7 +64,15 @@ public class CapitalController extends BaseController {
             CapitalAuditResp annualReportAuditResp = new CapitalAuditResp();
             BeanUtils.copyProperties(data,annualReportAuditResp);
             if(data.getFirstAuditPersonId().longValue()==loginId.longValue() || data.getSecondAuditPersonId().longValue()==loginId.longValue()||data.getThirdAudtiPersonId().longValue()==loginId.longValue()){
-                annualReportAuditResp.setNeedAudit(1);
+                if(data.getFirstAuditPersonId().longValue()==loginId.longValue() && Objects.nonNull(data.getFirstAuditDate())){
+                    annualReportAuditResp.setNeedAudit(2);
+                }else if(data.getSecondAuditPersonId().longValue()==loginId.longValue() && Objects.nonNull(data.getSecondAuditDate())){
+                    annualReportAuditResp.setNeedAudit(2);
+                }else if(data.getThirdAudtiPersonId().longValue()==loginId.longValue() && Objects.nonNull(data.getThirdAuditDate())){
+                    annualReportAuditResp.setNeedAudit(2);
+                }else {
+                    annualReportAuditResp.setNeedAudit(1);
+                }
             }
             if(data.getUserId().longValue()==loginId.longValue()){
                 annualReportAuditResp.setNeedOper(1);

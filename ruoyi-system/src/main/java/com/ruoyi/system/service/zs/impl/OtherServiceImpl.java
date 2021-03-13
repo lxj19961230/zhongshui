@@ -2,6 +2,7 @@ package com.ruoyi.system.service.zs.impl;
 
 import com.ruoyi.common.core.text.Convert;
 import com.ruoyi.common.enums.zs.AuditEnum;
+import com.ruoyi.common.enums.zs.BizType;
 import com.ruoyi.common.enums.zs.RecordState;
 import com.ruoyi.common.exception.BusinessException;
 import com.ruoyi.common.utils.StringUtils;
@@ -10,10 +11,13 @@ import com.ruoyi.system.domain.zs.other.AuditReq;
 import com.ruoyi.system.mapper.SysUserMapper;
 import com.ruoyi.system.mapper.zs.OtherTaxAssuranceModelMapper;
 import com.ruoyi.system.service.zs.OtherService;
+import com.ruoyi.system.service.zs.manager.CodeRuleManager;
 import org.apache.commons.compress.utils.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -31,8 +35,10 @@ public class OtherServiceImpl implements OtherService {
     private OtherTaxAssuranceModelMapper otherTaxAssuranceModelMapper;
     @Autowired
     private SysUserMapper userMapper;
+    @Autowired
+    private CodeRuleManager codeRuleManager;
 
-    private final int startNum = 110001;
+    private final int startNum = 1;
 
     @Override
     public List<OtherTaxAssuranceModel> selectDeptList(OtherTaxAssuranceModel model) {
@@ -40,6 +46,7 @@ public class OtherServiceImpl implements OtherService {
     }
 
     @Override
+    @Transactional
     public synchronized int insert(OtherTaxAssuranceModel data) {
 
         Set<Long> audits = Sets.newHashSet(data.getFirstAuditPersonId(),data.getSecondAuditPersonId(),data.getThirdAudtiPersonId());
@@ -47,7 +54,6 @@ public class OtherServiceImpl implements OtherService {
             throw new BusinessException("审核人员不能重复！");
         }
 
-        data.setYear(data.getAuditYear());
         Integer maxId = otherTaxAssuranceModelMapper.findMaxId();
         if(Objects.isNull(maxId) || maxId<startNum){
             data.setId(startNum);
@@ -55,7 +61,8 @@ public class OtherServiceImpl implements OtherService {
             data.setId(maxId+1);
         }
 
-        data.setReportSerial(Integer.valueOf(data.getYear()+""+data.getId()));
+        data.setYear(data.getAuditYear());
+        data.setReportSerial(codeRuleManager.getNextCode(BizType.OTHER_TAX_ASSURANCE,data.getId(),Objects.isNull(data.getAuditYear())? LocalDate.now().getYear():data.getAuditYear()));
         data.setIsDeleted(0);
         data.setFirstAuditPersonName(userMapper.selectUserById(data.getFirstAuditPersonId()).getLoginName());
         data.setSecondAuditPersonName(userMapper.selectUserById(data.getSecondAuditPersonId()).getLoginName());
@@ -67,6 +74,7 @@ public class OtherServiceImpl implements OtherService {
     }
 
     @Override
+    @Transactional
     public int deleteByIds(String ids) {
         if(StringUtils.isNotBlank(ids)){
             Integer[] ss = Convert.toIntArray(ids);
@@ -75,6 +83,7 @@ public class OtherServiceImpl implements OtherService {
                 annualReportAuditModel.setId(id);
                 annualReportAuditModel.setIsDeleted(1);
                 otherTaxAssuranceModelMapper.updateById(annualReportAuditModel);
+                codeRuleManager.disactive(BizType.OTHER_TAX_ASSURANCE,annualReportAuditModel.getId());
             }
         }
         return 1;

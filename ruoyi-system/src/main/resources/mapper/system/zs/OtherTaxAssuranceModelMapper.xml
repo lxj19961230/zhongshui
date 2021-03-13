@@ -93,7 +93,7 @@
 	<insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true" >
 		insert into other_tax_assurance (
 			id,
-			year,
+			`year`,
 			report_serial,
 			state,
 			report_path,

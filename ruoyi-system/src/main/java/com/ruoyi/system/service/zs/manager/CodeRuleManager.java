@@ -14,7 +14,7 @@ public interface CodeRuleManager {
      * 功能描述: 获取文件号
      * @auther: lxj 2021/3/12 10:28
      */
-    public int getNextCode(BizType bizType, int year);
+    int getNextCode(BizType bizType, Integer bizId,int year);
 
-
+    Boolean disactive(BizType otherTaxAssurance, Integer id);
 }

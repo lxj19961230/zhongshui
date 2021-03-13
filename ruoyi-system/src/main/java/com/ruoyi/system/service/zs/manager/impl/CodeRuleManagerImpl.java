@@ -23,7 +23,7 @@ public class CodeRuleManagerImpl implements CodeRuleManager {
     private CodeRuleMapper codeRuleMapper;
 
     @Override
-    public synchronized int getNextCode(BizType bizType, int year) {
+    public synchronized int getNextCode(BizType bizType,Integer bizId, int year) {
         int code = 1;
         List<CodeRule> codeRules = codeRuleMapper.getAllDataForUpdateByTypeAndYear(year,bizType.getType());
         if(CollectionUtils.isEmpty(codeRules)){
@@ -32,6 +32,7 @@ public class CodeRuleManagerImpl implements CodeRuleManager {
             codeRule.setSequence(code);
             codeRule.setType(bizType.getType());
             codeRule.setYear(year);
+            codeRule.setBizId(bizId);
             codeRuleMapper.save(codeRule);
             code = bizType.getCode()+code;
             return Integer.valueOf(year+""+code);
@@ -39,10 +40,10 @@ public class CodeRuleManagerImpl implements CodeRuleManager {
             Map<Integer,List<CodeRule>> map = codeRules.stream().collect(Collectors.groupingBy(CodeRule::getActive));
             List<CodeRule> disactives = map.get(1);
             if(CollectionUtils.isNotEmpty(disactives)){
-                OptionalInt data = codeRules.stream().mapToInt(CodeRule::getSequence).min();
+                OptionalInt data = disactives.stream().mapToInt(CodeRule::getSequence).min();
                 if(data.isPresent()){
                     code = data.getAsInt();
-                    codeRuleMapper.updateActive(bizType.getType(),year,code);
+                    codeRuleMapper.updateActiveAndBizId(bizType.getType(),year,code,bizId);
                     code = bizType.getCode()+code;
                     return Integer.valueOf(year+""+code);
                 }else {
@@ -57,6 +58,7 @@ public class CodeRuleManagerImpl implements CodeRuleManager {
                     codeRule.setSequence(code);
                     codeRule.setType(bizType.getType());
                     codeRule.setYear(year);
+                    codeRule.setBizId(bizId);
                     codeRuleMapper.save(codeRule);
                     code = bizType.getCode()+code;
                     return Integer.valueOf(year+""+code);
@@ -65,5 +67,10 @@ public class CodeRuleManagerImpl implements CodeRuleManager {
                 }
             }
         }
+    }
+
+    @Override
+    public Boolean disactive(BizType bizType, Integer id) {
+        return 1==codeRuleMapper.updateDisActiveByBizId(bizType.getType(),id);
     }
 }

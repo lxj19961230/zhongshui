@@ -18,5 +18,10 @@ public interface CodeRuleMapper {
 
     public List<CodeRule> getAllDataForUpdateByTypeAndYear(@Param("year") Integer year, @Param("type")Integer type);
 
-    public Integer updateActive(@Param("type")Integer type, @Param("year")Integer year, @Param("sequence")Integer sequence);
+    public Integer updateActiveAndBizId(@Param("type")Integer type, @Param("year")Integer year, @Param("sequence")Integer sequence,@Param("bizId")Integer bizId);
+
+    public Integer updateActiveByBizId(@Param("type")Integer type, @Param("bizId")Integer bizId);
+
+    public Integer updateDisActiveByBizId(@Param("type")Integer type, @Param("bizId")Integer bizId);
+
 }

@@ -328,7 +328,7 @@
 		from annual_report_audit
 		where is_deleted = 0
 		<if test="searchValue != null and searchValue != ''">
-			AND customerName like concat('%', #{searchValue}, '%')
+			AND report_serial like concat('%', #{searchValue}, '%')
 		</if>
 		<if test="userId != null and userId != ''">
 			AND (user_id = #{userId} or first_audit_person_id = #{userId} or second_audit_person_id = #{userId} or third_audti_person_id = #{userId})

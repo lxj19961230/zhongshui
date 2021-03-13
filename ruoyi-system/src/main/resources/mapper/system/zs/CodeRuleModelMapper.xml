@@ -6,13 +6,15 @@
 		<id column="sequence" jdbcType="INTEGER" property="sequence" />
 		<result column="year" jdbcType="INTEGER" property="year" />
 		<result column="type" jdbcType="INTEGER" property="type" />
+		<result column="biz_id" jdbcType="INTEGER" property="bizId" />
 	</resultMap>
 
 	<sql id="Base_Column_List" >
 		sequence,
 		`year`,
 		`type`,
-		`active`
+		`active`,
+		biz_id
 	</sql>
 
 	<insert id="save" useGeneratedKeys="true" >
@@ -20,23 +22,32 @@
 			sequence,
 			`year`,
 			`type`,
-			`active`
+			`active`,
+			biz_id
 		)
  	    values (
  	    	#{sequence},
  	    	#{year},
 			#{type},
-			#{active}
+			#{active},
+			#{bizId}
 		)
 	</insert>
 
-	<update id="updateActive">
-		update code_rule set `active` = 0 where `year` = #{year} and `sequence` = #{sequence} and `type` = #{type}
+	<update id="updateActiveAndBizId">
+		update code_rule set `active` = 0 , biz_id = #{bizId} where `year` = #{year} and `sequence` = #{sequence} and `type` = #{type}
+	</update>
+
+	<update id="updateActiveByBizId">
+		update code_rule set `active` = 0 where `type` = #{type} and biz_id = #{bizId}
 	</update>
 
 	<select id="getAllDataForUpdateByTypeAndYear" resultType="com.ruoyi.system.domain.zs.CodeRule">
 		select * from code_rule where `year` = #{year} and `type` = #{type} for update
 	</select>
 
+	<update id="updateDisActiveByBizId">
+		update code_rule set `active` = 1 where `type` = #{type} and biz_id = #{bizId}
+	</update>
 
 </mapper>
