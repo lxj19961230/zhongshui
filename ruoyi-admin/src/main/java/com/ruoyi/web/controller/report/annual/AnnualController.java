@@ -159,6 +159,14 @@ public class AnnualController extends BaseController {
         return prefix + "/audit";
     }
 
+    @GetMapping("/file/{id}")
+    public String upload(@PathVariable("id") Integer id, ModelMap mmap)
+    {
+        //mmap.put("data", annualService.selectById(id));
+        return prefix + "/file";
+    }
+
+
     @RequiresPermissions("report:annual:audit")
     @Log(title = "年报审计", businessType = BusinessType.UPDATE)
     @PostMapping("/audit")

@@ -93,7 +93,10 @@
 				{
 					field: 'reportPath',
 					title: '业务存储路径',
-					align: "left"
+					align: "left",
+					formatter: function(value, row, index) {
+						return '<a href="javascript:void(0)" onclick="uploadFile(\'' + row.id + '\')">' + value + '</a>';
+					}
 				},
 				{
 					field: 'organizationName',
@@ -182,6 +185,11 @@
 		function detail(id) {
 			var url = prefix + '/detail/' + id;
 			$.modal.openTab("详情", url);
+		}
+		/* 上传资料 */
+		function uploadFile(id) {
+			var url = prefix + '/file/' + id;
+			$.modal.openTab("资料", url);
 		}
 	</script>
 </body>
